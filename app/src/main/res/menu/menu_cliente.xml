@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_inicio"
+        android:icon="@drawable/ic_pie_chart"
+        android:title="Inicio" />
+    <item
+        android:id="@+id/nav_historial"
+        android:icon="@drawable/ic_people"
+        android:title="Historial" />
+    <item
+        android:id="@+id/nav_tratamientos"
+        android:icon="@drawable/ic_list"
+        android:title="Tratamientos" />
+    <item
+        android:id="@+id/nav_mascotas"
+        android:icon="@drawable/ic_report"
+        android:title="Mascotas" />
+</menu>

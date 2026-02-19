@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "816427894663",
+    "project_id": "proyectoveterinaria-d0970",
+    "storage_bucket": "proyectoveterinaria-d0970.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816427894663:android:63cc294cf7d6632fb83522",
+        "android_client_info": {
+          "package_name": "com.ivandev.proyectoveterinaria"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816427894663-incco4nmsrm40dkifpajdarpg9br1uj9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ivandev.proyectoveterinaria",
+            "certificate_hash": "96dbaf1233bab2db14044ec5e044281f0c224ad0"
+          }
+        },
+        {
+          "client_id": "816427894663-kkdim2gl7u8koe88rpgjjq6dap7ud40i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHdPvUnll8XdirteYHos9vXjLzv0LKUsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816427894663-kkdim2gl7u8koe88rpgjjq6dap7ud40i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

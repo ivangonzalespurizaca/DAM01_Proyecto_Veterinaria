@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_registro"
+    app:startDestination="@id/paso1Fragment">
+
+    <fragment
+        android:id="@+id/paso1Fragment"
+        android:name="com.ivandev.proyectoveterinaria.fragment.Paso1Fragment"
+        android:label="Datos Iniciales"
+        tools:layout="@layout/fragment_paso1">
+        <action
+            android:id="@+id/action_paso1_to_paso2"
+            app:destination="@id/paso2Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/paso2Fragment"
+        android:name="com.ivandev.proyectoveterinaria.fragment.Paso2Fragment"
+        android:label="Crear Cuenta"
+        tools:layout="@layout/fragment_paso2">
+        <action
+            android:id="@+id/action_paso2_to_verification"
+            app:destination="@id/verificacionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/verificacionFragment"
+        android:name="com.ivandev.proyectoveterinaria.fragment.VerificationFragment"
+        android:label="Verificar Correo"
+        tools:layout="@layout/fragment_verification" />
+</navigation>

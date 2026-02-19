@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9FA"
+    android:padding="32dp">
+
+    <ImageView
+        android:id="@+id/imgLogoPaso1"
+        android:layout_width="251dp"
+        android:layout_height="199dp"
+        android:contentDescription="Logo VetCare"
+        android:src="@drawable/ic_imagotipo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="CREAR CUENTA"
+        android:textColor="#023E89"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtStepIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Paso 2 de 2: Perfil Personal"
+        android:textColor="#4B5563"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgLogoPaso1" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:background="@drawable/bg_input_rounded"
+        android:hint="Correo Electrónico"
+        android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/ic_email"
+
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/montserrat"
+        android:textSize="16sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#1F2937"
+        android:textColorHint="#9CA3AF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:drawablePadding="20dp"
+        android:drawableTint="#9CA3AF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtStepIndicator"  />
+
+    <EditText
+        android:id="@+id/etContrasenia"
+        android:background="@drawable/bg_input_rounded"
+        android:hint="Crear una contraseña"
+        android:inputType="textPassword"
+        android:drawableStart="@drawable/ic_lock"
+
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat"
+        android:textSize="16sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#1F2937"
+        android:textColorHint="#9CA3AF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:drawablePadding="20dp"
+        android:drawableTint="#9CA3AF"
+
+        app:layout_constraintTop_toBottomOf="@id/etEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/etRepetirContrasenia"
+        android:background="@drawable/bg_input_rounded"
+        android:drawableStart="@drawable/ic_lock"
+        android:hint="Confirmar contraseña"
+        android:inputType="textPassword"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:paddingEnd="20dp"
+        android:fontFamily="@font/montserrat"
+        android:textSize="16sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#1F2937"
+        android:textColorHint="#9CA3AF"
+        android:paddingStart="20dp"
+        android:drawablePadding="20dp"
+        android:drawableTint="#9CA3AF"
+
+        app:layout_constraintTop_toBottomOf="@id/etContrasenia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnFinalizarRegistro"
+        android:text="FINALIZAR REGISTRO"
+        android:background="@drawable/bg_button_rounded"
+
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="14sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etRepetirContrasenia" />
+
+    <TextView
+        android:id="@+id/txtAcountIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/montserrat"
+        android:text="¿Ya tienes una cuenta?"
+        android:textColor="#4B5563"
+        app:layout_constraintBottom_toTopOf="@+id/txtLoginLink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtLoginLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="45dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Inicia sesión aquí"
+        android:textColor="#023E8A"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

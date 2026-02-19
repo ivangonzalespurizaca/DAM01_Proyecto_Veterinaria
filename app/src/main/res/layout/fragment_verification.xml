@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9FA"
+    android:padding="24dp">
+
+    <ImageView
+        android:id="@+id/imgEmail"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
+        app:tint="#023E89" />
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="299dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="¡VERIFICA TU CUENTA!"
+        android:textAlignment="center"
+        android:textColor="#023E89"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvInstrucciones"
+        android:layout_width="320dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Hemos enviado un enlace de confirmación a tu correo electrónico. Por favor, revísalo para continuar."
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgEmail" />
+
+
+    <Button
+        android:id="@+id/btnConfirmarVerificacion"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+
+        android:layout_marginTop="80dp"
+        android:background="@drawable/bg_button_rounded"
+
+        android:fontFamily="@font/montserrat_bold"
+        android:text="YA VERIFIQUÉ MI CORREO"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+
+
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInstrucciones" />
+
+    <TextView
+        android:id="@+id/txtVerificarIndicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/montserrat"
+        android:text="¿No recibiste el correo? Reenviar enlace"
+        android:textColor="#4B5563"
+        app:layout_constraintBottom_toTopOf="@+id/txtReenviarCorreo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"  />
+
+    <TextView
+        android:id="@+id/txtReenviarCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="45dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Reenviar enlace"
+        android:textColor="#023E8A"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

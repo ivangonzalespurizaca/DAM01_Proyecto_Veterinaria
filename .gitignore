@@ -1,0 +1,28 @@
+# Archivos de Android Studio / IntelliJ
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+
+# Carpetas de compilación
+/build
+/*/build
+/captures
+
+# NDK
+.externalNativeBuild
+.cxx
+
+# Seguridad y Firmado (Keystores)
+*.jks
+*.keystore
+secrets.properties
+
+# Archivos de sistema
+Thumbs.db
