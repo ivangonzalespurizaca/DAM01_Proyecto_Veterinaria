@@ -69,8 +69,8 @@ class UsuarioDBHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME
     fun insertarUsuario(usuario: Usuario): Long {
         val db = this.writableDatabase
         val values = ContentValues().apply {
-            put(COL_UID, usuario.idUsuario) // El ID que viene de Firebase
-            put(COL_NOMBRE, usuario.nombresCompleto)
+            put(COL_UID, usuario.id) // El ID que viene de Firebase
+            put(COL_NOMBRE, usuario.nombreCompleto)
             put(COL_DNI, usuario.dni)
             put(COL_CELULAR, usuario.celular)
             put(COL_CORREO, usuario.correo)
@@ -87,8 +87,8 @@ class UsuarioDBHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME
         db.beginTransaction()
         try {
             val valuesUser = ContentValues().apply {
-                put(COL_UID, usuario.idUsuario)
-                put(COL_NOMBRE, usuario.nombresCompleto)
+                put(COL_UID, usuario.id)
+                put(COL_NOMBRE, usuario.nombreCompleto)
                 put(COL_DNI, usuario.dni)
                 put(COL_CELULAR, usuario.celular)
                 put(COL_CORREO, usuario.correo)
@@ -97,7 +97,7 @@ class UsuarioDBHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME
             db.insertOrThrow(TABLE_USUARIO, null, valuesUser)
 
             val valuesVet = ContentValues().apply {
-                put(COL_VET_UID, usuario.idUsuario)
+                put(COL_VET_UID, usuario.id)
                 put(COL_COLEGIATURA, veterinario.numColegiatura)
                 put(COL_SEDE, veterinario.sede)
                 put(COL_ESPECIALIDAD, veterinario.especialidad)
@@ -127,8 +127,8 @@ class UsuarioDBHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME
         var usuario: Usuario? = null
         if (cursor.moveToFirst()) {
             usuario = Usuario(
-                idUsuario = cursor.getString(cursor.getColumnIndexOrThrow(COL_UID)),
-                nombresCompleto = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOMBRE)),
+                id = cursor.getString(cursor.getColumnIndexOrThrow(COL_UID)),
+                nombreCompleto = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOMBRE)),
                 dni = cursor.getString(cursor.getColumnIndexOrThrow(COL_DNI)),
                 celular = cursor.getString(cursor.getColumnIndexOrThrow(COL_CELULAR)),
                 correo = cursor.getString(cursor.getColumnIndexOrThrow(COL_CORREO)),

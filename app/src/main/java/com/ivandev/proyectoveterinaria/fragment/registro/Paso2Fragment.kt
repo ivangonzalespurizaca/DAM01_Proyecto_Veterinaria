@@ -1,9 +1,9 @@
-package com.ivandev.proyectoveterinaria.fragment
+package com.ivandev.proyectoveterinaria.fragment.registro
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth

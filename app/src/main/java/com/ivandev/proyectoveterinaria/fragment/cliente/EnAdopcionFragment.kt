@@ -7,20 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import com.ivandev.proyectoveterinaria.R
 import com.ivandev.proyectoveterinaria.activity.PanelPrincipalActivity
+import com.ivandev.proyectoveterinaria.databinding.FragmentEnAdopcionBinding
 import com.ivandev.proyectoveterinaria.databinding.FragmentInicioAdminBinding
-import com.ivandev.proyectoveterinaria.databinding.FragmentMascotasBinding
 import com.ivandev.proyectoveterinaria.interfaces.IFragmentoToolbar
 
-class MascotasFragment : Fragment(R.layout.fragment_mascotas), IFragmentoToolbar {
-    override val titulo: String = "MASCOTAS"
+class EnAdopcionFragment : Fragment(R.layout.fragment_en_adopcion), IFragmentoToolbar {
+    override val titulo: String = "EN ADOPCIÓN"
     override val tipo: PanelPrincipalActivity.TipoToolbar = PanelPrincipalActivity.TipoToolbar.PRINCIPAL
 
-    private var _binding: FragmentMascotasBinding? = null
+    private var _binding: FragmentEnAdopcionBinding? = null
     private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentMascotasBinding.bind(view)
+        _binding = FragmentEnAdopcionBinding.bind(view)
     }
 
     override fun onDestroyView() {

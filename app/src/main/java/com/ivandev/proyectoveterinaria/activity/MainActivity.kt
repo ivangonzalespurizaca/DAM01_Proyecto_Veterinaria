@@ -42,33 +42,48 @@ class MainActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val user = auth.currentUser
-
-                if (user?.isEmailVerified == true) {
-                    obtenerRolYRedirigir(user.uid)
-                } else {
-                    Toast.makeText(this, "Por favor, verifica tu correo antes de entrar", Toast.LENGTH_LONG).show()
-                    auth.signOut()
+                if(user != null){
+                    verificarRolYPermitirAcceso(user)
                 }
+
+//                if (user?.isEmailVerified == true) {
+//                    obtenerRolYRedirigir(user.uid)
+//                } else {
+//                    Toast.makeText(this, "Por favor, verifica tu correo antes de entrar", Toast.LENGTH_LONG).show()
+//                    auth.signOut()
+//                }
             } else {
                 Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun obtenerRolYRedirigir(uid: String) {
-        firestore.collection("usuarios").document(uid).get()
+    private fun verificarRolYPermitirAcceso(user: com.google.firebase.auth.FirebaseUser) {
+        firestore.collection("usuarios").document(user.uid).get()
             .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
+                if (document.exists()) {
                     val rol = document.getString("rol") ?: "Cliente"
-
-                    val intent = Intent(this, PanelPrincipalActivity::class.java)
-                    intent.putExtra("USER_ROLE", rol)
-                    startActivity(intent)
-                    finish()
+                    if (rol == "Cliente") {
+                        if (user.isEmailVerified) {
+                            redirigirAPanel(rol)
+                        } else {
+                            Toast.makeText(this, "Por favor, verifica tu correo", Toast.LENGTH_LONG).show()
+                            auth.signOut()
+                        }
+                    } else {
+                        redirigirAPanel(rol)
+                    }
                 }
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Error al recuperar perfil", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun redirigirAPanel(rol: String) {
+        val intent = Intent(this, PanelPrincipalActivity::class.java)
+        intent.putExtra("USER_ROLE", rol)
+        startActivity(intent)
+        finish()
     }
 }

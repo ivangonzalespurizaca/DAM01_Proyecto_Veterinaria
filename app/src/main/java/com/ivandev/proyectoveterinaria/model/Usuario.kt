@@ -1,18 +1,36 @@
 package com.ivandev.proyectoveterinaria.model
 
-import com.google.gson.annotations.SerializedName
+import androidx.annotation.Keep
+import com.google.firebase.firestore.PropertyName
 
+@Keep
 data class Usuario (
-    @SerializedName("id_usuario")
-    var idUsuario: String = "",
+    @get:PropertyName("id")
+    @set:PropertyName("id")
+    var id: String = "",
 
-    @SerializedName("nombres_completo")
-    var nombresCompleto: String = "",
+    @get:PropertyName("nombreCompleto")
+    @set:PropertyName("nombreCompleto")
+    var nombreCompleto: String = "",
 
+    @get:PropertyName("dni")
+    @set:PropertyName("dni")
     var dni: String = "",
+
+    @get:PropertyName("celular")
+    @set:PropertyName("celular")
     var celular: String = "",
+
+    @get:PropertyName("correo")
+    @set:PropertyName("correo")
     var correo: String = "",
-    var contrasenia: String = "",
+
+    // Agregamos PropertyName aquí para asegurar que Firestore lea "foto" correctamente
+    @get:PropertyName("foto")
+    @set:PropertyName("foto")
     var foto: String? = null,
+
+    @get:PropertyName("rol")
+    @set:PropertyName("rol")
     var rol: String = ""
 )

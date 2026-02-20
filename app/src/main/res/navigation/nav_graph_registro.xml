@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/paso1Fragment"
-        android:name="com.ivandev.proyectoveterinaria.fragment.Paso1Fragment"
+        android:name="com.ivandev.proyectoveterinaria.fragment.registro.Paso1Fragment"
         android:label="Datos Iniciales"
         tools:layout="@layout/fragment_paso1">
         <action
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/paso2Fragment"
-        android:name="com.ivandev.proyectoveterinaria.fragment.Paso2Fragment"
+        android:name="com.ivandev.proyectoveterinaria.fragment.registro.Paso2Fragment"
         android:label="Crear Cuenta"
         tools:layout="@layout/fragment_paso2">
         <action
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/verificacionFragment"
-        android:name="com.ivandev.proyectoveterinaria.fragment.VerificationFragment"
+        android:name="com.ivandev.proyectoveterinaria.fragment.registro.VerificationFragment"
         android:label="Verificar Correo"
         tools:layout="@layout/fragment_verification" />
 </navigation>

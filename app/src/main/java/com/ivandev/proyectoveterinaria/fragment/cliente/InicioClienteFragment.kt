@@ -4,15 +4,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.ivandev.proyectoveterinaria.R
+import com.ivandev.proyectoveterinaria.activity.PanelPrincipalActivity
 import com.ivandev.proyectoveterinaria.databinding.FragmentInicioClienteBinding
+import com.ivandev.proyectoveterinaria.interfaces.IFragmentoToolbar
 import com.ivandev.proyectoveterinaria.model.Usuario
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// Pasamos el layout al constructor para que el Fragment lo infle automáticamente
-class InicioClienteFragment : Fragment(R.layout.fragment_inicio_cliente) {
-
+class InicioClienteFragment : Fragment(R.layout.fragment_inicio_cliente), IFragmentoToolbar {
+    override val titulo: String = "PANEL PRINCIPAL"
+    override val tipo: PanelPrincipalActivity.TipoToolbar = PanelPrincipalActivity.TipoToolbar.PRINCIPAL
     private var _binding: FragmentInicioClienteBinding? = null
     private val binding get() = _binding!!
 
@@ -33,7 +35,7 @@ class InicioClienteFragment : Fragment(R.layout.fragment_inicio_cliente) {
                     if (users != null && users.isNotEmpty()) {
                         val builder = StringBuilder()
                         for (user in users) {
-                            builder.append("Nombre: ${user.nombresCompleto}\n")
+                            builder.append("Nombre: ${user.nombreCompleto}\n")
                             builder.append("Email: ${user.correo}\n\n")
                         }
                         binding.tvInicioCliente.text = builder.toString()

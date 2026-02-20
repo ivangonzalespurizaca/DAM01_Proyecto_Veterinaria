@@ -1,4 +1,4 @@
-package com.ivandev.proyectoveterinaria.fragment
+package com.ivandev.proyectoveterinaria.fragment.registro
 
 import android.os.Bundle
 import android.view.View
@@ -38,7 +38,7 @@ class Paso1Fragment : Fragment(R.layout.fragment_paso1) {
             return
         }
 
-        registroClienteViewModel.usuarioProceso.nombresCompleto = nombre
+        registroClienteViewModel.usuarioProceso.nombreCompleto = nombre
         registroClienteViewModel.usuarioProceso.dni = dni
         registroClienteViewModel.usuarioProceso.celular = celular
 

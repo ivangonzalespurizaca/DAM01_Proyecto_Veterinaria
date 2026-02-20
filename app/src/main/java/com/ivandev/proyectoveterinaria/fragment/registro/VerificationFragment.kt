@@ -1,11 +1,9 @@
-package com.ivandev.proyectoveterinaria.fragment
+package com.ivandev.proyectoveterinaria.fragment.registro
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -15,7 +13,6 @@ import com.ivandev.proyectoveterinaria.databinding.FragmentVerificationBinding
 import com.ivandev.proyectoveterinaria.viewmodel.RegistroClienteViewModel
 
 class VerificationFragment : Fragment(R.layout.fragment_verification) {
-
     private val registroViewModel: RegistroClienteViewModel by activityViewModels()
     private var _binding: FragmentVerificationBinding? = null
     private val binding get() = _binding!!
@@ -71,7 +68,7 @@ class VerificationFragment : Fragment(R.layout.fragment_verification) {
         val correo = auth.currentUser?.email ?: ""
 
         val usuario = registroViewModel.usuarioProceso.apply {
-            this.idUsuario = uid
+            this.id = uid
             this.correo = correo
         }
 
