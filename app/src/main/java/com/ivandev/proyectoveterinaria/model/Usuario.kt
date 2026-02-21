@@ -35,5 +35,9 @@ data class Usuario (
 
     @get:PropertyName("rol")
     @set:PropertyName("rol")
-    var rol: String = ""
+    var rol: String = "",
+
+    @get:PropertyName("estado")
+    @set:PropertyName("estado")
+    var estado: String = "Activo"
 )

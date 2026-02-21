@@ -66,15 +66,26 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { document ->
                 if (document.exists()) {
                     val rol = document.getString("rol") ?: "Cliente"
-                    if (rol == "Cliente") {
-                        if (user.isEmailVerified) {
-                            redirigirAPanel(rol)
-                        } else {
-                            Toast.makeText(this, "Verifica tu correo electrónico", Toast.LENGTH_LONG).show()
-                            auth.signOut()
+                    val estado = document.getString("estado") ?: "Inactivo"
+
+                    if (estado != "Activo") {
+                        auth.signOut()
+                        Toast.makeText(this, "Esta cuenta ha sido dada de baja.", Toast.LENGTH_SHORT).show()
+                        return@addOnSuccessListener
+                    }
+
+                    when (rol) {
+                        "Cliente" -> {
+                            if (user.isEmailVerified) {
+                                redirigirAPanel(rol)
+                            } else {
+                                auth.signOut()
+                                Toast.makeText(this, "Verifica tu correo electrónico", Toast.LENGTH_LONG).show()
+                            }
                         }
-                    } else {
-                        redirigirAPanel(rol)
+                        "Veterinario", "Administrador" -> {
+                            redirigirAPanel(rol)
+                        }
                     }
                 }
             }
