@@ -2,4 +2,19 @@
     <string name="app_name">ProyectoVeterinaria</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="especialidades_veterinario">
+        <item>Medicina Interna</item>
+        <item>Cirugía Veterinaria</item>
+        <item>Dermatología</item>
+        <item>Cardiología</item>
+        <item>Fisioterapia</item>
+    </string-array>
+
+    <string-array name="sedes_veterinario">
+        <item>Sede Miraflores</item>
+        <item>Sede Los Olivos</item>
+        <item>Sede Surco</item>
+        <item>Sede San Borja</item>
+        <item>Sede San Miguel</item>
+    </string-array>
 </resources>

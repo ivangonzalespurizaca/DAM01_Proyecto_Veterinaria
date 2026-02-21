@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.ivandev.proyectoveterinaria.R
 import com.ivandev.proyectoveterinaria.databinding.ActivityPanelPrincipalBinding
-import com.ivandev.proyectoveterinaria.fragment.PerfilUsuarioFragment
+import com.ivandev.proyectoveterinaria.fragment.perfil.PerfilUsuarioFragment
 import com.ivandev.proyectoveterinaria.fragment.admin.catalogo.CatalogosFragment
 import com.ivandev.proyectoveterinaria.fragment.admin.InicioAdminFragment
 import com.ivandev.proyectoveterinaria.fragment.admin.ReportesFragment
@@ -127,7 +127,7 @@ class PanelPrincipalActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment, addToBackStack: Boolean = true) {
+    fun replaceFragment(fragment: Fragment, addToBackStack: Boolean = true) {
         val transaction = supportFragmentManager.beginTransaction()
 
         transaction.replace(R.id.nav_host_fragment, fragment)
@@ -175,11 +175,18 @@ class PanelPrincipalActivity : AppCompatActivity() {
     private fun cargarDatosUsuario() {
         val uid = auth.currentUser?.uid ?: return
 
-        firestore.collection("usuarios").document(uid).get()
-            .addOnSuccessListener { document ->
-                val usuario = document.toObject(Usuario::class.java)
-                if (usuario != null) {
-                    actualizarInterfazCabecera(usuario)
+        firestore.collection("usuarios").document(uid)
+            .addSnapshotListener { snapshot, error ->
+                if (error != null) {
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null && snapshot.exists()) {
+                    val usuario = snapshot.toObject(Usuario::class.java)
+                    if (usuario != null) {
+                        // Esto se ejecutará AUTOMÁTICAMENTE cada vez que cambies la foto
+                        actualizarInterfazCabecera(usuario)
+                    }
                 }
             }
     }

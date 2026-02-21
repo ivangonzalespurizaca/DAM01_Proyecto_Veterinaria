@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24dp"
+    android:background="@drawable/bg_input_rounded"
+    android:backgroundTint="@color/brand_background">
+
+    <TextView
+        android:id="@+id/tvTituloDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RESTABLECER CONTRASEÑA"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#023E8A"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvInstrucciones"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Ingresa tu correo para enviarte un enlace de restablecimiento."
+        android:fontFamily="@font/montserrat"
+        android:textColor="#4B5563"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloDialog"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/etEmailRecuperacion"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_input_rounded"
+        android:drawableStart="@drawable/ic_email"
+        android:textSize="16sp"
+        android:drawablePadding="16dp"
+        android:drawableTint="#9CA3AF"
+        android:hint="Correo electrónico"
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="16dp"
+        android:fontFamily="@font/montserrat"
+        app:layout_constraintTop_toBottomOf="@id/tvInstrucciones"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnEnviarRecuperacion"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_button_rounded"
+        android:text="ENVIAR ENLACE"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/montserrat_bold"
+        app:backgroundTint="@null"
+        app:layout_constraintTop_toBottomOf="@id/etEmailRecuperacion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/btnCancelarRecuperacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Cancelar"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#4B5563"
+        app:layout_constraintTop_toBottomOf="@id/btnEnviarRecuperacion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

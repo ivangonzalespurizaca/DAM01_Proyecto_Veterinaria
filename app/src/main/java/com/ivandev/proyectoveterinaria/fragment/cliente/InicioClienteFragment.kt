@@ -30,25 +30,26 @@ class InicioClienteFragment : Fragment(R.layout.fragment_inicio_cliente), IFragm
 
         RetrofitClient.instance.getUsuarios().enqueue(object : Callback<List<Usuario>> {
             override fun onResponse(call: Call<List<Usuario>>, response: Response<List<Usuario>>) {
+                val currentBinding = _binding ?: return
+
                 if (response.isSuccessful) {
                     val users = response.body()
-                    if (users != null && users.isNotEmpty()) {
+                    if (!users.isNullOrEmpty()) {
                         val builder = StringBuilder()
                         for (user in users) {
                             builder.append("Nombre: ${user.nombreCompleto}\n")
                             builder.append("Email: ${user.correo}\n\n")
                         }
-                        binding.tvInicioCliente.text = builder.toString()
+                        currentBinding.tvInicioCliente.text = builder.toString()
                     } else {
-                        binding.tvInicioCliente.text = "No se encontraron usuarios."
+                        currentBinding.tvInicioCliente.text = "No se encontraron usuarios."
                     }
                 } else {
-                    binding.tvInicioCliente.text = "Error del servidor: ${response.code()}"
+                    currentBinding.tvInicioCliente.text = "Error del servidor: ${response.code()}"
                 }
             }
 
             override fun onFailure(call: Call<List<Usuario>>, t: Throwable) {
-                // El error suele ocurrir por falta de internet o servidor apagado
                 binding.tvInicioCliente.text = "Error de conexión: ${t.message}"
             }
         })

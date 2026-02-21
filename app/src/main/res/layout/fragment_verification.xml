@@ -37,8 +37,8 @@
 
     <TextView
         android:id="@+id/tvInstrucciones"
-        android:layout_width="320dp"
-        android:layout_height="79dp"
+        android:layout_width="319dp"
+        android:layout_height="138dp"
         android:layout_marginTop="44dp"
         android:fontFamily="@font/montserrat"
         android:text="Hemos enviado un enlace de confirmación a tu correo electrónico. Por favor, revísalo para continuar."
@@ -55,20 +55,20 @@
         android:layout_width="0dp"
         android:layout_height="45dp"
 
-        android:layout_marginTop="80dp"
-        android:background="@drawable/bg_button_rounded"
+        android:layout_marginBottom="35dp"
 
+        android:background="@drawable/bg_button_rounded"
         android:fontFamily="@font/montserrat_bold"
         android:text="YA VERIFIQUÉ MI CORREO"
         android:textColor="@android:color/white"
+
+
         android:textStyle="bold"
-
-
         app:backgroundTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/txtVerificarIndicacion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvInstrucciones" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtVerificarIndicacion"

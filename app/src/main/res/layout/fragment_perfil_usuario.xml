@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F9FAFB"
-    tools:context=".fragment.PerfilUsuarioFragment">
+    tools:context=".fragment.perfil.PerfilUsuarioFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerHeader"
@@ -66,6 +66,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="Nombre Completo"
+            android:textAlignment="center"
             android:textColor="@color/brand_blue"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"

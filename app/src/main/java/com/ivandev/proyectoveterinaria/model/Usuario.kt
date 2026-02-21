@@ -2,13 +2,16 @@ package com.ivandev.proyectoveterinaria.model
 
 import androidx.annotation.Keep
 import com.google.firebase.firestore.PropertyName
+import com.google.gson.annotations.SerializedName
 
 @Keep
 data class Usuario (
+    @SerializedName("id_usuario")
     @get:PropertyName("id")
     @set:PropertyName("id")
     var id: String = "",
 
+    @SerializedName("nombres_completo")
     @get:PropertyName("nombreCompleto")
     @set:PropertyName("nombreCompleto")
     var nombreCompleto: String = "",
