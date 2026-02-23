@@ -14,13 +14,13 @@ import com.ivandev.proyectoveterinaria.fragment.perfil.PerfilUsuarioFragment
 import com.ivandev.proyectoveterinaria.fragment.admin.catalogo.CatalogosFragment
 import com.ivandev.proyectoveterinaria.fragment.admin.InicioAdminFragment
 import com.ivandev.proyectoveterinaria.fragment.admin.ReportesFragment
-import com.ivandev.proyectoveterinaria.fragment.admin.UsuariosFragment
+import com.ivandev.proyectoveterinaria.fragment.admin.usuario.UsuariosFragment
 import com.ivandev.proyectoveterinaria.fragment.cliente.EnAdopcionFragment
 import com.ivandev.proyectoveterinaria.fragment.cliente.HistorialFragment
 import com.ivandev.proyectoveterinaria.fragment.cliente.InicioClienteFragment
-import com.ivandev.proyectoveterinaria.fragment.cliente.MascotasFragment
+import com.ivandev.proyectoveterinaria.fragment.cliente.mascota.MascotasFragment
 import com.ivandev.proyectoveterinaria.fragment.veterinario.AgendaFragment
-import com.ivandev.proyectoveterinaria.fragment.veterinario.ConsultasFragment
+import com.ivandev.proyectoveterinaria.fragment.veterinario.consultas.ConsultasFragment
 import com.ivandev.proyectoveterinaria.fragment.veterinario.InicioVeterinarioFragment
 import com.ivandev.proyectoveterinaria.fragment.veterinario.PacientesFragment
 import com.ivandev.proyectoveterinaria.interfaces.IFragmentoToolbar
@@ -120,7 +120,7 @@ class PanelPrincipalActivity : AppCompatActivity() {
                 // Cliente
                 R.id.nav_historial -> { replaceFragment(HistorialFragment()); true }
                 R.id.nav_mascotas -> { replaceFragment(MascotasFragment()); true }
-                R.id.nav_tratamientos -> { replaceFragment(EnAdopcionFragment()); true }
+                R.id.nav_adopcion -> { replaceFragment(EnAdopcionFragment()); true }
 
                 else -> false
             }

@@ -6,14 +6,14 @@
         android:title="Inicio" />
     <item
         android:id="@+id/nav_consultas"
-        android:icon="@drawable/ic_people"
+        android:icon="@drawable/ic_consulta"
         android:title="Consultas" />
     <item
         android:id="@+id/nav_pacientes"
-        android:icon="@drawable/ic_list"
+        android:icon="@drawable/ic_pet"
         android:title="Pacientes" />
     <item
         android:id="@+id/nav_agenda"
-        android:icon="@drawable/ic_report"
+        android:icon="@drawable/ic_calendar"
         android:title="Agenda" />
 </menu>

@@ -11,8 +11,10 @@ import com.ivandev.proyectoveterinaria.databinding.ItemPersonalCardBinding
 import com.ivandev.proyectoveterinaria.model.Usuario
 import com.ivandev.proyectoveterinaria.model.VeterinarioCompleto
 
-class PersonalAdapter(private var listaPersonal: MutableList<VeterinarioCompleto>,
-    private val onAnularCuenta: (Usuario) -> Unit
+class PersonalAdapter(
+    private var listaPersonal: MutableList<VeterinarioCompleto>,
+    private val onAnularCuenta: (Usuario) -> Unit,
+    private val onVerPerfil: (VeterinarioCompleto) -> Unit
 ) : RecyclerView.Adapter<PersonalAdapter.PersonalViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonalViewHolder {
@@ -57,27 +59,31 @@ class PersonalAdapter(private var listaPersonal: MutableList<VeterinarioCompleto
             }
 
             binding.btnMenuOpciones.setOnClickListener { view ->
-                mostrarMenuContextual(view, usuario)
+                mostrarMenuContextual(view, vet)
             }
         }
 
-        private fun mostrarMenuContextual(view: View, usuario: Usuario) {
+        private fun mostrarMenuContextual(view: View, vet: VeterinarioCompleto) {
             val popup = PopupMenu(view.context, view)
             popup.menuInflater.inflate(R.menu.menu_item_personal, popup.menu)
 
             val itemBaja = popup.menu.findItem(R.id.item_dar_baja)
 
-            if (usuario.estado == "Inactivo") {
-                itemBaja.title = "Reactivar Cuenta"
-            } else {
-                itemBaja.title = "Dar de baja"
-            }
+            itemBaja.title = if (vet.usuario.estado == "Inactivo") "Reactivar Cuenta" else "Dar de baja"
 
             popup.setOnMenuItemClickListener { item ->
-                if (item.itemId == R.id.item_dar_baja) {
-                    onAnularCuenta(usuario)
-                    true
-                } else false
+                when (item.itemId) {
+                    R.id.item_dar_baja -> {
+                        onAnularCuenta(vet.usuario)
+                        true
+                    }
+                    R.id.item_ver_perfil -> {
+                        // Invocamos el nuevo callback para el BottomSheet
+                        onVerPerfil(vet)
+                        true
+                    }
+                    else -> false
+                }
             }
             popup.show()
         }

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/brand_background"
+    android:orientation="vertical"
+    android:paddingHorizontal="32dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="32dp">
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:background="#E5E7EB" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivFotoPerfilMascota"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:padding="2dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_pet"
+        app:shapeAppearanceOverlay="@style/CircleImage"
+        app:strokeColor="@color/brand_blue"
+        app:strokeWidth="2dp" />
+
+    <TextView
+        android:id="@+id/tvNombrePerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textAlignment="center"
+        android:textColor="@color/text_secondary"
+        android:textSize="22sp"
+        android:text="Nombre Mascota" />
+
+    <TextView
+        android:id="@+id/tvResumenPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:textAlignment="center"
+        android:textColor="@color/text_muted"
+        android:textSize="13sp"
+        android:text="RAZA . EDAD . SEXO" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:padding="12dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha Nac."
+                android:textSize="11sp"
+                android:fontFamily="@font/montserrat" />
+            <TextView
+                android:id="@+id/tvFechaNacPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/text_secondary"
+                android:text="00/00/0000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:padding="12dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Peso (kg)"
+                android:textSize="11sp"
+                android:fontFamily="@font/montserrat" />
+            <TextView
+                android:id="@+id/tvPesoPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/text_secondary"
+                android:text="0.0 kg" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="1dp"
+        android:backgroundTint="@color/white"
+        app:strokeColor="#F3F4F6">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/tvCodigoPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/text_muted"
+                android:text="ID-MASCOTA" />
+
+            <ImageView
+                android:id="@+id/ivQrPerfil"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:textColor="@color/text_muted"
+                android:text="Muestra este código al veterinario para\nacceder al historial médico" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

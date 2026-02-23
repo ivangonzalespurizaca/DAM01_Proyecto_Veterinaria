@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9FA">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="32dp">
+
+        <TextView
+            android:id="@+id/tvSubtitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Ingresa los datos del profesional"
+            android:textColor="@color/text_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etNombreVet"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_input_rounded"
+            android:drawableStart="@drawable/ic_person"
+            android:drawablePadding="20dp"
+            android:drawableTint="@color/text_muted"
+            android:fontFamily="@font/montserrat"
+            android:hint="Nombre Completo"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/text_secondary"
+            android:textColorHint="@color/text_muted"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSubtitulo" />
+
+        <EditText
+            android:id="@+id/etDniVet"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_input_rounded"
+            android:drawableStart="@drawable/ic_badge"
+            android:drawablePadding="20dp"
+            android:drawableTint="@color/text_muted"
+            android:fontFamily="@font/montserrat"
+            android:hint="DNI / Documento"
+            android:inputType="number"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/text_secondary"
+            android:textColorHint="@color/text_muted"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etNombreVet" />
+
+        <EditText
+            android:id="@+id/etCelularVet"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_input_rounded"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawablePadding="20dp"
+            android:drawableTint="@color/text_muted"
+            android:fontFamily="@font/montserrat"
+            android:hint="Número de Celular"
+            android:inputType="phone"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/text_secondary"
+            android:textColorHint="@color/text_muted"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etDniVet" />
+
+        <EditText
+            android:id="@+id/etCmvpVet"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_input_rounded"
+            android:drawableStart="@drawable/ic_medical_services"
+            android:drawablePadding="20dp"
+            android:drawableTint="@color/text_muted"
+            android:fontFamily="@font/montserrat"
+            android:hint="Número CMVP"
+            android:inputType="text"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/text_secondary"
+            android:textColorHint="@color/text_muted"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etCelularVet" />
+
+        <EditText
+            android:id="@+id/etEmailVet"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_input_rounded"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="20dp"
+            android:drawableTint="@color/text_muted"
+            android:fontFamily="@font/montserrat"
+            android:hint="Correo Electrónico"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/text_secondary"
+            android:textColorHint="@color/text_muted"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etCmvpVet" />
+
+        <Button
+            android:id="@+id/btnRegistrarVet"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_button_rounded"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="REGISTRAR PROFESIONAL"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:backgroundTint="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etEmailVet" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

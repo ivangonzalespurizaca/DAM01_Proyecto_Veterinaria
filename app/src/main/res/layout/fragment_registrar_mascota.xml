@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9FA">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="32dp"
+        android:paddingTop="48dp"
+        android:paddingBottom="32dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/phoContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivFotoMascota"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:padding="4dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_pet"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/CircleImage"
+                app:strokeColor="@color/brand_blue"
+                app:strokeWidth="2dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnCambiarFoto"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/brand_green"
+                app:cardCornerRadius="19dp"
+                app:cardElevation="4dp"
+                app:layout_constraintBottom_toBottomOf="@id/ivFotoMascota"
+                app:layout_constraintEnd_toEndOf="@id/ivFotoMascota"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintVertical_bias="0.9"
+                app:strokeColor="#FFFFFF"
+                app:strokeWidth="2dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_add"
+                    app:tint="#FFFFFF" />
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvTituloMascota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="DATOS DE LA MASCOTA"
+            android:textColor="#023E89"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phoContainer" />
+
+        <EditText
+            android:id="@+id/etDniDueno"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_input_rounded"
+            android:drawableStart="@drawable/ic_person"
+            android:drawablePadding="20dp"
+            android:drawableTint="#9CA3AF"
+            android:enabled="false"
+            android:fontFamily="@font/montserrat"
+            android:hint="DNI del dueño"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="#9CA3AF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTituloMascota" />
+
+        <EditText
+            android:id="@+id/etNombreMascota"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input_rounded"
+            android:drawableStart="@drawable/ic_pet"
+            android:drawablePadding="20dp"
+            android:drawableTint="#9CA3AF"
+            android:fontFamily="@font/montserrat"
+            android:hint="Nombre de la mascota"
+            android:inputType="textCapWords"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etDniDueno" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEspecieMascota"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Especie"
+            app:layout_constraintTop_toBottomOf="@id/etNombreMascota"
+            app:startIconDrawable="@drawable/ic_pet">
+            <AutoCompleteTextView
+                android:id="@+id/actvEspecie"
+                android:inputType="none"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRazaMascota"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Raza"
+            app:layout_constraintTop_toBottomOf="@id/tilEspecieMascota"
+            app:startIconDrawable="@drawable/ic_pet">
+            <AutoCompleteTextView
+                android:id="@+id/actvRaza"
+                android:inputType="none"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText
+            android:id="@+id/etPesoInicial"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input_rounded"
+            android:drawableStart="@drawable/ic_weight"
+            android:drawablePadding="20dp"
+            android:drawableTint="#9CA3AF"
+            android:fontFamily="@font/montserrat"
+            android:hint="Peso inicial (kg)"
+            android:inputType="numberDecimal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilRazaMascota" />
+
+        <EditText
+            android:id="@+id/etFechaNacimiento"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input_rounded"
+            android:drawableStart="@drawable/ic_calendar"
+            android:drawablePadding="20dp"
+            android:drawableTint="#9CA3AF"
+            android:focusable="false"
+            android:clickable="true"
+            android:fontFamily="@font/montserrat"
+            android:hint="Fecha de nacimiento"
+            android:inputType="none"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="#1F2937"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etPesoInicial" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilSexoMascota"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Sexo"
+            app:layout_constraintTop_toBottomOf="@id/etFechaNacimiento"
+            app:startIconDrawable="@drawable/ic_person">
+            <AutoCompleteTextView
+                android:id="@+id/actvSexo"
+                android:inputType="none"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnGuardarMascota"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/bg_button_rounded"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="REGISTRAR MASCOTA"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilSexoMascota" />
+
+        <Button
+            android:id="@+id/btnEliminarMascota"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/bg_button_rounded_red"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="ELIMINAR PACIENTE"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnGuardarMascota" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

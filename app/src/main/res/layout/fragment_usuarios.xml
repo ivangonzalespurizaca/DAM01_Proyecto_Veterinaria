@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/brand_background"
-    tools:context=".fragment.admin.UsuariosFragment">
+    tools:context=".fragment.admin.usuario.UsuariosFragment">
 
     <EditText
         android:id="@+id/etBuscarPersonal"
@@ -20,7 +20,7 @@
         android:drawableTint="@color/text_muted"
         android:elevation="2dp"
         android:fontFamily="@font/montserrat"
-        android:hint="Buscar por DNI o Colegiatura"
+        android:hint="Buscar por DNI o Nombres"
         android:paddingHorizontal="15dp"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -67,15 +67,13 @@ class EditarDatosFragment : Fragment(R.layout.fragment_editar_datos), IFragmento
                 if (doc.exists()) {
                     binding.actvEspecialidad.setText(doc.getString("especialidad"), false)
                     binding.etColegiatura.setText(doc.getString("numero_colegiatura"))
-                    binding.actvSede.setText(doc.getString("sede"))
+                    binding.actvSede.setText(doc.getString("sede"), false)
                 }
             }
     }
 
     private fun guardarCambios() {
         val uid = auth.currentUser?.uid ?: return
-
-        // Datos básicos (Solo los editables)
         val updatesUser = mapOf(
             "nombreCompleto" to binding.etNombre.text.toString(),
             "celular" to binding.etCelular.text.toString()
@@ -121,12 +119,12 @@ class EditarDatosFragment : Fragment(R.layout.fragment_editar_datos), IFragmento
     }
 
     private fun configurarSelectorSedes() {
-        val especialidades = resources.getStringArray(R.array.sedes_veterinario)
+        val sedes = resources.getStringArray(R.array.sedes_veterinario)
 
         val adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_dropdown_item_1line,
-            especialidades
+            sedes
         )
 
         binding.actvSede.setAdapter(adapter)

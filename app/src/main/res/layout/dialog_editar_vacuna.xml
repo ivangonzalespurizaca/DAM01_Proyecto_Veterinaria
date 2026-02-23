@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24dp"
+    android:background="@drawable/bg_input_rounded"
+    android:backgroundTint="@color/brand_background">
+
+    <TextView
+        android:id="@+id/tvTituloVacunaDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EDITAR VACUNA"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#023E8A"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvInstruccionesVacuna"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Ingresa el nombre oficial de la vacuna para el catálogo."
+        android:fontFamily="@font/montserrat"
+        android:textColor="#4B5563"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloVacunaDialog"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/etNombreVacuna"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_input_rounded"
+        android:drawableStart="@drawable/ic_medical_services"
+        android:textSize="16sp"
+        android:drawablePadding="16dp"
+        android:drawableTint="#9CA3AF"
+        android:hint="Nombre de la vacuna"
+        android:inputType="textCapSentences"
+        android:paddingHorizontal="16dp"
+        android:fontFamily="@font/montserrat"
+        app:layout_constraintTop_toBottomOf="@id/tvInstruccionesVacuna"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnGuardarVacuna"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_button_rounded"
+        android:text="GUARDAR CAMBIOS"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/montserrat_bold"
+        app:backgroundTint="@null"
+        app:layout_constraintTop_toBottomOf="@id/etNombreVacuna"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnEliminarVacuna"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_button_rounded_red"
+        android:text="ELIMINAR VACUNA"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/montserrat_bold"
+        app:backgroundTint="@null"
+        app:layout_constraintTop_toBottomOf="@id/btnGuardarVacuna"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/btnCancelarVacuna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Cancelar"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#4B5563"
+        app:layout_constraintTop_toBottomOf="@id/btnEliminarVacuna"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

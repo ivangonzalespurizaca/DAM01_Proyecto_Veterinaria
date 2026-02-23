@@ -6,6 +6,7 @@
 
     <color name="brand_background">#F8F9FA</color>
     <color name="brand_blue">#023E8A</color>
+    <color name="soft_blue">#094EAD</color>
     <color name="brand_green">#61bb72</color>
     <color name="text_primary">#374151</color>   <color name="text_secondary">#4B5563</color> <color name="text_muted">#9CA3AF</color>     <color name="text_white">#F9FAFB</color>
     <color name="error_red">#EF4444</color>
