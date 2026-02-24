@@ -67,11 +67,19 @@ class MainActivity : AppCompatActivity() {
                 if (document.exists()) {
                     val rol = document.getString("rol") ?: "Cliente"
                     val estado = document.getString("estado") ?: "Inactivo"
-
+                    val nombre = document.getString("nombreCompleto") ?: "Veterinario de Guardia"
                     if (estado != "Activo") {
                         auth.signOut()
                         Toast.makeText(this, "Esta cuenta ha sido dada de baja.", Toast.LENGTH_SHORT).show()
                         return@addOnSuccessListener
+                    }
+
+                    val prefs = getSharedPreferences("Sesion", MODE_PRIVATE)
+                    prefs.edit().apply {
+                        putString("idUsuario", user.uid)
+                        putString("nombreCompleto", nombre)
+                        putString("USER_ROLE", rol)
+                        apply()
                     }
 
                     when (rol) {

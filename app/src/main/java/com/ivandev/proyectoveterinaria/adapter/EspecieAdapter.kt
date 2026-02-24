@@ -28,7 +28,6 @@ class EspecieAdapter(
             tvDetalleCatalogo.text = especie.definicion
             tvIdCatalogo.text = "ID: ${especie.id}"
 
-            // Al tocar la tarjeta, abrimos las opciones
             cardItemCatalogo.setOnClickListener { onGestionar(especie) }
         }
     }

@@ -63,23 +63,11 @@
             </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tvTituloMascota"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="DATOS DE LA MASCOTA"
-            android:textColor="#023E89"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoContainer" />
-
         <EditText
             android:id="@+id/etDniDueno"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/bg_input_rounded"
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="20dp"
@@ -91,8 +79,9 @@
             android:paddingEnd="20dp"
             android:textColor="#9CA3AF"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTituloMascota" />
+            app:layout_constraintTop_toBottomOf="@+id/phoContainer" />
 
         <EditText
             android:id="@+id/etNombreMascota"

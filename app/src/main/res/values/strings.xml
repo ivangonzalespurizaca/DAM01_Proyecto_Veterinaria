@@ -17,4 +17,19 @@
         <item>Sede San Borja</item>
         <item>Sede San Miguel</item>
     </string-array>
+
+    <string-array name="tipos_medicamento">
+        <item>Antibiótico</item>
+        <item>Analgésico / Antipirético</item>
+        <item>Antiinflamatorio (AINEs)</item>
+        <item>Antiparasitario Interno</item>
+        <item>Antiparasitario Externo</item>
+        <item>Antifúngico</item>
+        <item>Vitamina / Suplemento</item>
+        <item>Protector Gástrico</item>
+        <item>Tratamiento Ótico (Oídos)</item>
+        <item>Tratamiento Oftálmico (Ojos)</item>
+        <item>Dermatológico / Tópico</item>
+        <item>Otro</item>
+    </string-array>
 </resources>

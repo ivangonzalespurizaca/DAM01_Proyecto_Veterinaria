@@ -2,6 +2,7 @@ package com.ivandev.proyectoveterinaria.fragment.cliente.mascota
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -30,6 +31,7 @@ class RegistrarMascotaFragment : Fragment(R.layout.fragment_registrar_mascota), 
     override val titulo: String get() = if (mascotaEditar != null) "EDITAR MASCOTA" else "NUEVA MASCOTA"
     override val tipo: PanelPrincipalActivity.TipoToolbar = PanelPrincipalActivity.TipoToolbar.SECUNDARIO
 
+    private var nombreDueno: String = ""
     private var _binding: FragmentRegistrarMascotaBinding? = null
     private val binding get() = _binding!!
     val user = FirebaseAuth.getInstance().currentUser
@@ -70,13 +72,17 @@ class RegistrarMascotaFragment : Fragment(R.layout.fragment_registrar_mascota), 
 
     private fun configurarModo() {
         val esEdicion = mascotaEditar != null
-        binding.tvTituloMascota.text = if (esEdicion) "Editar información clínica" else "Registrar nuevo paciente"
         binding.btnGuardarMascota.text = if (esEdicion) "ACTUALIZAR" else "REGISTRAR"
         binding.btnEliminarMascota.visibility = if (esEdicion) View.VISIBLE else View.GONE
 
         if (esEdicion) {
+            nombreDueno = mascotaEditar!!.nombreDueno
             rellenarCampos(mascotaEditar!!)
         } else {
+
+            val prefs = requireActivity().getSharedPreferences("Sesion", Context.MODE_PRIVATE)
+            nombreDueno = prefs.getString("nombreCompleto", "") ?: ""
+
             user?.uid?.let { uid ->
                 viewModel.obtenerDniUsuarioLogueado(uid) { dni ->
                     if (dni != null) {
@@ -129,6 +135,8 @@ class RegistrarMascotaFragment : Fragment(R.layout.fragment_registrar_mascota), 
         val fecha = binding.etFechaNacimiento.text.toString()
         val sexo = binding.actvSexo.text.toString()
         val dni = binding.etDniDueno.text.toString()
+        val especieNombre = binding.actvEspecie.text.toString()
+        val nombreRaza = binding.actvRaza.text.toString()
 
         if (nombre.isEmpty() || especieSeleccionadaId.isEmpty() || razaSeleccionadaId.isEmpty()) {
             Toast.makeText(requireContext(), "Completa los campos obligatorios", Toast.LENGTH_SHORT).show()
@@ -136,15 +144,15 @@ class RegistrarMascotaFragment : Fragment(R.layout.fragment_registrar_mascota), 
         }
 
         if (imageUri != null) {
-            subirACloudinary(nombre, peso, fecha, sexo, dni)
+            subirACloudinary(nombre, peso, fecha, sexo, dni, especieNombre, nombreRaza)
         } else if (mascotaEditar != null) {
-            guardarEnFirestore(mascotaEditar!!.foto, nombre, peso, fecha, sexo, dni)
+            guardarEnFirestore(mascotaEditar!!.foto, nombre, peso, fecha, sexo, dni, especieNombre, nombreRaza)
         } else {
             Toast.makeText(requireContext(), "Es necesaria una foto del paciente", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun subirACloudinary(nombre: String, peso: Double, fecha: String, sexo: String, dni: String) {
+    private fun subirACloudinary(nombre: String, peso: Double, fecha: String, sexo: String, dni: String, especieNombre: String, razaNombre: String) {
         binding.btnGuardarMascota.isEnabled = false
         Toast.makeText(requireContext(), "Subiendo imagen clínica...", Toast.LENGTH_SHORT).show()
 
@@ -153,7 +161,7 @@ class RegistrarMascotaFragment : Fragment(R.layout.fragment_registrar_mascota), 
             .callback(object : UploadCallback {
                 override fun onSuccess(requestId: String?, resultData: Map<*, *>?) {
                     val url = resultData?.get("secure_url").toString()
-                    guardarEnFirestore(url, nombre, peso, fecha, sexo, dni)
+                    guardarEnFirestore(url, nombre, peso, fecha, sexo, dni, especieNombre, razaNombre)
                 }
                 override fun onError(requestId: String?, error: ErrorInfo?) {
                     binding.btnGuardarMascota.isEnabled = true
@@ -165,13 +173,16 @@ class RegistrarMascotaFragment : Fragment(R.layout.fragment_registrar_mascota), 
             }).dispatch()
     }
 
-    private fun guardarEnFirestore(url: String, nombre: String, peso: Double, fecha: String, sexo: String, dni: String) {
+    private fun guardarEnFirestore(url: String, nombre: String, peso: Double, fecha: String, sexo: String, dni: String, nombreEspecie: String, razaNombre: String) {
         val uidActual = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
         val mascota = Mascota(
             idMascota = mascotaEditar?.idMascota ?: "",
             nombreMascota = nombre,
             idEspecie = especieSeleccionadaId,
+            nombreDueno = nombreDueno,
+            nombreEspecie = nombreEspecie,
+            nombreRaza = razaNombre,
             idRaza = razaSeleccionadaId,
             idCliente = mascotaEditar?.idCliente ?: uidActual,
             sexo = sexo,

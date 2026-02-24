@@ -58,7 +58,7 @@
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:src="@drawable/ic_especies"
-                    app:tint="@color/brand_blue" />
+                    app:tint="@color/brand_green" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Especies"
-                    android:textColor="@color/text_secondary" />
+                    android:textColor="@color/brand_blue" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
                     android:fontFamily="@font/montserrat"
                     android:text="Perros, gatos, aves..."
                     android:textAlignment="center"
-                    android:textColor="@color/text_muted"
+                    android:textColor="@color/text_secondary"
                     android:textSize="11sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -104,7 +104,7 @@
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:src="@drawable/ic_raza"
-                    app:tint="@color/brand_blue" />
+                    app:tint="@color/brand_green" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -112,7 +112,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Razas"
-                    android:textColor="@color/text_secondary" />
+                    android:textColor="@color/brand_blue" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
                     android:fontFamily="@font/montserrat"
                     android:text="Pastor alemán, Persa..."
                     android:textAlignment="center"
-                    android:textColor="@color/text_muted"
+                    android:textColor="@color/text_secondary"
                     android:textSize="11sp" />
             </LinearLayout>
 
@@ -149,7 +149,7 @@
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:src="@drawable/ic_vaccine"
-                    app:tint="@color/brand_blue" />
+                    app:tint="@color/brand_green" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -157,7 +157,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Vacunas"
-                    android:textColor="@color/text_secondary" />
+                    android:textColor="@color/brand_blue" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -165,7 +165,7 @@
                     android:fontFamily="@font/montserrat"
                     android:text="Antirrábica, parvovirus"
                     android:textAlignment="center"
-                    android:textColor="@color/text_muted"
+                    android:textColor="@color/text_secondary"
                     android:textSize="11sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -193,7 +193,7 @@
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:src="@drawable/ic_pet"
-                    app:tint="@color/brand_blue" />
+                    app:tint="@color/brand_green" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -201,7 +201,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="En Adopción"
-                    android:textColor="@color/text_secondary" />
+                    android:textColor="@color/brand_blue" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -209,7 +209,7 @@
                     android:fontFamily="@font/montserrat"
                     android:text="Mascotas en Adopción"
                     android:textAlignment="center"
-                    android:textColor="@color/text_muted"
+                    android:textColor="@color/text_secondary"
                     android:textSize="11sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

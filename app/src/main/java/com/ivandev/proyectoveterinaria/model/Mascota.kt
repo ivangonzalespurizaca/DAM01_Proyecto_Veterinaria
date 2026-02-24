@@ -9,8 +9,11 @@ import kotlinx.parcelize.Parcelize
 data class Mascota(
     var idMascota: String = "",
     var nombreMascota: String = "",
+    var nombreDueno: String = "",
     var idEspecie: String = "",
+    var nombreEspecie: String = "",
     var idRaza: String = "",
+    var nombreRaza: String = "",
     var idCliente: String = "",
     var sexo: String = "",
     var fechaNacimiento: String = "",

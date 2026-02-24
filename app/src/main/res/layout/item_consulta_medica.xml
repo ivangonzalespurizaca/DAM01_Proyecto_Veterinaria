@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardItemConsulta"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="6dp"
+    android:backgroundTint="@color/white"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <FrameLayout
+            android:id="@+id/flIconoConsulta"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/bg_icon_rounded_light"
+            android:backgroundTint="#E0F2F1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivIconoConsulta"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:src="@drawable/ic_medical_services"
+                app:tint="@color/brand_green" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvFechaConsulta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="2026/24/02"
+            android:textColor="@color/brand_blue"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/flIconoConsulta"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvMotivoConsulta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/montserrat_bold"
+            android:maxLines="1"
+            android:text="Chequeo General de Rutina"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvFechaConsulta"
+            app:layout_constraintTop_toBottomOf="@id/tvFechaConsulta" />
+
+        <TextView
+            android:id="@+id/tvSignosVitales"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Peso: 5.2kg | Temp: 38.5°C"
+            android:textColor="@color/text_muted"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/tvMotivoConsulta"
+            app:layout_constraintTop_toBottomOf="@id/tvMotivoConsulta" />
+
+        <TextView
+            android:id="@+id/tvBadgeTratamiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_button_rounded"
+            android:backgroundTint="#E3F2FD"
+            android:fontFamily="@font/montserrat_bold"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:text="CON TRATAMIENTO"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@id/tvSignosVitales"
+            app:layout_constraintTop_toBottomOf="@id/tvSignosVitales" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
