@@ -91,7 +91,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:textColor="#1F2937"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTituloMascota" />
@@ -103,6 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="Especie"
+            android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/etNombreMascota"
             app:startIconDrawable="@drawable/ic_pet"
             app:startIconTint="#9CA3AF">
@@ -121,6 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:hint="Raza"
+            android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/tilEspecieMascota"
             app:startIconDrawable="@drawable/ic_pet"
             app:startIconTint="#9CA3AF">
@@ -146,7 +148,7 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:textColor="#1F2937"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tilRazaMascota" />
@@ -169,6 +171,44 @@
                 android:fontFamily="@font/montserrat" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <EditText
+            android:id="@+id/etDescripcionAdopcion"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input_rounded"
+            android:drawablePadding="20dp"
+            android:drawableTint="#9CA3AF"
+            android:fontFamily="@font/montserrat"
+            android:gravity="top"
+            android:hint="Cuéntanos su historia (carácter, si convive con otros, etc.)"
+            android:inputType="textMultiLine"
+            android:padding="20dp"
+            android:textColor="#1F2937"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilSexoMascota" />
+
+        <EditText
+            android:id="@+id/etContactoAdopcion"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_input_rounded"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawablePadding="20dp"
+            android:drawableTint="#9CA3AF"
+            android:fontFamily="@font/montserrat"
+            android:hint="Teléfono o WhatsApp de contacto"
+            android:inputType="phone"
+            android:paddingStart="20dp"
+            android:textSize="14sp"
+            android:paddingEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etDescripcionAdopcion" />
+
         <Button
             android:id="@+id/btnGuardarMascota"
             android:layout_width="0dp"
@@ -182,7 +222,7 @@
             app:backgroundTint="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilSexoMascota" />
+            app:layout_constraintTop_toBottomOf="@id/etContactoAdopcion" />
 
         <Button
             android:id="@+id/btnEliminarMascota"

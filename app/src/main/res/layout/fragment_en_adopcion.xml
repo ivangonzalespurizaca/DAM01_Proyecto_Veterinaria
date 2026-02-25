@@ -1,14 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.cliente.EnAdopcionFragment">
+    android:background="@color/brand_background">
 
-    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:id="@+id/etBuscarMascotaCliente"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_input_rounded"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="12dp"
+        android:drawableTint="@color/text_muted"
+        android:elevation="3dp"
+        android:fontFamily="@font/montserrat"
+        android:hint="Buscar por especie..."
+        android:paddingHorizontal="18dp"
+        android:textColor="@color/text_primary"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnVerSolicitudes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnVerSolicitudes"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_input_rounded"
+        android:elevation="3dp"
+        android:padding="2dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_report"
+        app:tint="@color/brand_blue"
+        app:layout_constraintBottom_toBottomOf="@id/etBuscarMascotaCliente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/etBuscarMascotaCliente" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Mascotas en Adopción" />
+        android:id="@+id/tvLabelExplorar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="HISTORIAS ESPERANDO POR TI"
+        android:textColor="@color/brand_blue"
+        android:textSize="12sp"
+        android:letterSpacing="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etBuscarMascotaCliente" />
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAdopcionCliente"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:clipToPadding="false"
+        android:paddingBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLabelExplorar"
+        tools:listitem="@layout/item_mascota_adopcion_cliente" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

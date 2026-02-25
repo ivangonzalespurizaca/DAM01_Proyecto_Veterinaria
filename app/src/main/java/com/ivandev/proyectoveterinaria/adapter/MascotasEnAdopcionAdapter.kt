@@ -1,7 +1,9 @@
 package com.ivandev.proyectoveterinaria.adapter
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ivandev.proyectoveterinaria.R
@@ -27,25 +29,47 @@ class MascotasEnAdopcionAdapter(
 
     override fun onBindViewHolder(holder: AdopcionViewHolder, position: Int) {
         val mascota = lista[position]
+        val context = holder.binding.root.context
+
         holder.binding.apply {
             tvNombreAdopcion.text = mascota.nombreMascota
 
-            val sufijoEdad = if(mascota.edadEstimada == "1") "año" else "años"
-            // Traducimos los IDs a nombres usando los mapas
+            // Lógica de traducción de IDs
             val nombreEspecie = especiesMap[mascota.idEspecie] ?: "Desconocida"
             val nombreRaza = razasMap[mascota.idRaza] ?: "Desconocida"
             tvRazaEspecieAdopcion.text = "$nombreRaza - $nombreEspecie"
 
+            // Lógica de edad
+            val sufijoEdad = if(mascota.edadEstimada == "1") "año" else "años"
             tvDetallesAdopcion.text = "${mascota.sexo} • ${mascota.edadEstimada} $sufijoEdad"
+
+            // 1. Lógica de Colores según el Estado
             tvEstadoAdopcion.text = mascota.estado.uppercase()
 
-            Glide.with(root.context)
+            val colorRes = when (mascota.estado.lowercase()) {
+                "disponible" -> R.color.brand_green  // Verde por ejemplo
+                "en proceso" -> R.color.brand_orange   // Naranja por ejemplo
+                "adoptado"   -> R.color.text_muted   // Gris o Azul
+                else         -> R.color.black
+            }
+            tvEstadoAdopcion.backgroundTintList = ColorStateList.valueOf(
+                ContextCompat.getColor(context, colorRes)
+            )
+
+            // 2. Bloqueo de Edición si está "Aprobado"
+            if (mascota.estado.lowercase() == "adoptado") {
+                root.setOnClickListener(null)
+                root.alpha = 0.6f
+            } else {
+                root.alpha = 1.0f
+                root.setOnClickListener { onEditar(mascota) }
+            }
+
+            Glide.with(context)
                 .load(mascota.foto)
                 .placeholder(R.drawable.ic_pet)
                 .circleCrop()
                 .into(ivFotoAdopcion)
-
-            root.setOnClickListener { onEditar(mascota) }
         }
     }
 
