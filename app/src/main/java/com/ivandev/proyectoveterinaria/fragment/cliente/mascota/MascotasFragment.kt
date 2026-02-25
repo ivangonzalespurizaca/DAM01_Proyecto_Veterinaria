@@ -135,7 +135,22 @@ class MascotasFragment : Fragment(R.layout.fragment_mascotas), IFragmentoToolbar
     }
 
     private fun abrirVacunas(mascota: Mascota) {
+        val fragmentoCarnet = CarnetDeVacunasFragment()
 
+        val bundle = Bundle().apply {
+            putParcelable("mascota", mascota)
+        }
+        fragmentoCarnet.arguments = bundle
+
+        // 3. Realizamos la navegació
+        parentFragmentManager.beginTransaction()
+            .setCustomAnimations(
+                R.anim.slide_in_right,  // Animación de entrada
+                R.anim.slide_out_left
+            )
+            .replace(R.id.nav_host_fragment, fragmentoCarnet)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onDestroyView() {

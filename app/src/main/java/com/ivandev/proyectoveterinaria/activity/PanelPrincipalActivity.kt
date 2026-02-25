@@ -16,7 +16,7 @@ import com.ivandev.proyectoveterinaria.fragment.admin.InicioAdminFragment
 import com.ivandev.proyectoveterinaria.fragment.admin.ReportesFragment
 import com.ivandev.proyectoveterinaria.fragment.admin.usuario.UsuariosFragment
 import com.ivandev.proyectoveterinaria.fragment.cliente.enAdopcion.EnAdopcionFragment
-import com.ivandev.proyectoveterinaria.fragment.cliente.HistorialFragment
+import com.ivandev.proyectoveterinaria.fragment.cliente.historial.SeleccionarMascotaHistorialFragment
 import com.ivandev.proyectoveterinaria.fragment.cliente.InicioClienteFragment
 import com.ivandev.proyectoveterinaria.fragment.cliente.mascota.MascotasFragment
 import com.ivandev.proyectoveterinaria.fragment.veterinario.AgendaFragment
@@ -118,7 +118,7 @@ class PanelPrincipalActivity : AppCompatActivity() {
                 R.id.nav_agenda -> { replaceFragment(AgendaFragment()); true }
 
                 // Cliente
-                R.id.nav_historial -> { replaceFragment(HistorialFragment()); true }
+                R.id.nav_historial -> { replaceFragment(SeleccionarMascotaHistorialFragment()); true }
                 R.id.nav_mascotas -> { replaceFragment(MascotasFragment()); true }
                 R.id.nav_adopcion -> { replaceFragment(EnAdopcionFragment()); true }
 

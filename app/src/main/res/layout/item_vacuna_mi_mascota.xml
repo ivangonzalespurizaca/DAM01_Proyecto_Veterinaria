@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardItemConsulta"
+    android:id="@+id/cardItemVacuna"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
@@ -17,79 +17,78 @@
         android:padding="16dp">
 
         <FrameLayout
-            android:id="@+id/flIconoConsulta"
+            android:id="@+id/flIconoContainer"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@drawable/bg_icon_rounded_light"
-            android:backgroundTint="#E0F2F1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5">
 
             <ImageView
-                android:id="@+id/ivIconoConsulta"
+                android:id="@+id/ivIconoVacuna"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="12dp"
-                android:src="@drawable/ic_medical_services"
+                android:padding="10dp"
+                android:src="@drawable/ic_vaccine"
                 app:tint="@color/brand_green" />
         </FrameLayout>
 
         <TextView
-            android:id="@+id/tvFechaConsulta"
+            android:id="@+id/tvNombreVacuna"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="2026/24/02"
-            android:textColor="@color/brand_blue"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/flIconoConsulta"
+            android:text="Nombre de la Vacuna"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@id/btnMenuOpciones"
+            app:layout_constraintStart_toEndOf="@id/flIconoContainer"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvMotivoConsulta"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/montserrat_bold"
-            android:maxLines="1"
-            android:text="Chequeo General de Rutina"
-            android:textColor="@color/text_primary"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tvFechaConsulta"
-            app:layout_constraintTop_toBottomOf="@id/tvFechaConsulta" />
-
-        <TextView
-            android:id="@+id/tvSignosVitales"
+            android:id="@+id/tvNumeroDosis"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/montserrat_medium"
-            android:text="Peso: 5.2kg | Temp: 38.5°C"
-            android:textColor="@color/text_muted"
+            android:text="Dosis: 1"
+            android:textColor="@color/brand_blue"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@id/tvMotivoConsulta"
-            app:layout_constraintTop_toBottomOf="@id/tvMotivoConsulta" />
+            app:layout_constraintStart_toStartOf="@id/tvNombreVacuna"
+            app:layout_constraintTop_toBottomOf="@id/tvNombreVacuna" />
 
         <TextView
-            android:id="@+id/tvBadgeTratamiento"
+            android:id="@+id/tvFechaDinamica"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_button_rounded"
-            android:backgroundTint="@color/brand_green"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Aplicada el: 20/02/2026"
+            android:textColor="@color/text_muted"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/tvNombreVacuna"
+            app:layout_constraintTop_toBottomOf="@id/tvNumeroDosis" />
+
+        <TextView
+            android:id="@+id/tvEstadoVacuna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/montserrat_bold"
+            android:text="APLICADA"
+            android:textSize="10sp"
+            android:textColor="#ffffff"
             android:paddingHorizontal="10dp"
             android:paddingVertical="4dp"
-            android:text="CON TRATAMIENTO"
-            android:textColor="@color/white"
-            android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@id/tvSignosVitales"
-            app:layout_constraintTop_toBottomOf="@id/tvSignosVitales" />
+            android:background="@drawable/bg_button_rounded"
+            app:layout_constraintStart_toStartOf="@id/tvNombreVacuna"
+            app:layout_constraintTop_toBottomOf="@id/tvFechaDinamica" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
