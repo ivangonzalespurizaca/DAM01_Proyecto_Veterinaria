@@ -19,7 +19,7 @@ import com.ivandev.proyectoveterinaria.fragment.cliente.enAdopcion.EnAdopcionFra
 import com.ivandev.proyectoveterinaria.fragment.cliente.historial.SeleccionarMascotaHistorialFragment
 import com.ivandev.proyectoveterinaria.fragment.cliente.InicioClienteFragment
 import com.ivandev.proyectoveterinaria.fragment.cliente.mascota.MascotasFragment
-import com.ivandev.proyectoveterinaria.fragment.veterinario.AgendaFragment
+import com.ivandev.proyectoveterinaria.fragment.veterinario.bitacora.BitacoraFragment
 import com.ivandev.proyectoveterinaria.fragment.veterinario.consultas.ConsultasFragment
 import com.ivandev.proyectoveterinaria.fragment.veterinario.InicioVeterinarioFragment
 import com.ivandev.proyectoveterinaria.fragment.veterinario.solicitud.SolicitudFragment
@@ -115,7 +115,7 @@ class PanelPrincipalActivity : AppCompatActivity() {
                 // Veterinario
                 R.id.nav_consultas -> { replaceFragment(ConsultasFragment()); true }
                 R.id.nav_pacientes -> { replaceFragment(SolicitudFragment()); true }
-                R.id.nav_agenda -> { replaceFragment(AgendaFragment()); true }
+                R.id.nav_agenda -> { replaceFragment(BitacoraFragment()); true }
 
                 // Cliente
                 R.id.nav_historial -> { replaceFragment(SeleccionarMascotaHistorialFragment()); true }

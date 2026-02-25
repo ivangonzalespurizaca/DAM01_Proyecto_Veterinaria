@@ -7,7 +7,10 @@ import kotlinx.parcelize.Parcelize
 data class ConsultaMedica(
     val idConsulta: String = "",
     val idMascota: String = "",
+    val nombreMascota: String = "",
     val idVeterinario: String = "",
+    val especieMascota: String = "",
+    val fotoMascota: String = "",
     val nombreVeterinario: String = "",
     val fechaConsulta: String = "",
     val pesoActual: Double = 0.0,

@@ -36,6 +36,28 @@ class ConsultaViewModel : ViewModel() {
             }
     }
 
+    fun listarConsultasPorVeterinario(idVeterinario: String) {
+        db.collection("consultas_medicas")
+            .whereEqualTo("idVeterinario", idVeterinario) // Filtro por médico
+            .addSnapshotListener { snapshot, error ->
+                if (error != null) return@addSnapshotListener
+
+                if (snapshot != null) {
+                    val todas = snapshot.toObjects(ConsultaMedica::class.java)
+
+                    // Reutilizamos tu lógica de ordenamiento cronológico
+                    val listaOrdenada = todas.sortedByDescending { consulta ->
+                        try {
+                            formatoFecha.parse(consulta.fechaConsulta)
+                        } catch (e: Exception) {
+                            Date(0)
+                        }
+                    }
+                    _listaConsultas.value = listaOrdenada
+                }
+            }
+    }
+
     fun guardarConsulta(consulta: ConsultaMedica, callback: (Boolean) -> Unit) {
         db.collection("consultas_medicas")
             .document(consulta.idConsulta)

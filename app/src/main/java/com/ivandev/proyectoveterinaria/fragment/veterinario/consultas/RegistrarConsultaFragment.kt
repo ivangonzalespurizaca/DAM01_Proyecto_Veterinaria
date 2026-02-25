@@ -95,6 +95,9 @@ class RegistrarConsultaFragment : Fragment(R.layout.fragment_registrar_consulta)
             temperatura = temp,
             motivo = motivo,
             diagnostico = diagnostico,
+            nombreMascota = mascota?.nombreMascota ?: "mascota desconocida",
+            especieMascota = mascota?.nombreEspecie ?: "", // Usamos el nombre que ya traes
+            fotoMascota = mascota?.foto ?: "",
             recomendaciones = binding.etRecomendaciones.text.toString(),
             // Datos de tratamiento si el switch está activo
             tipoMedicamento = if (binding.switchIncluirTratamiento.isChecked) binding.actvTipoMedicamento.text.toString() else "",
