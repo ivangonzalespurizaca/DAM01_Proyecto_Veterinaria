@@ -101,8 +101,6 @@ class InicioAdminFragment : Fragment(R.layout.fragment_inicio_admin), IFragmento
 
 
     }
-
-
     private fun cargarHistorialConEspecies() {
         db.collection("consultas_medicas")
             .addSnapshotListener { snapshot, error ->

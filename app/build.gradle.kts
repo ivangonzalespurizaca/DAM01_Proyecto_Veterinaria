@@ -81,4 +81,14 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation("com.google.zxing:core:3.5.3")
+
+
+
+    // Librerías base de iText 7
+    implementation("com.itextpdf:kernel:7.2.5")
+    implementation("com.itextpdf:io:7.2.5")
+    implementation("com.itextpdf:layout:7.2.5")
+    implementation("com.itextpdf:forms:7.2.5")
+
+
 }
