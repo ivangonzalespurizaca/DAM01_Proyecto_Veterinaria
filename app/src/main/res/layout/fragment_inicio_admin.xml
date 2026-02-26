@@ -105,8 +105,7 @@
                             android:layout_height="match_parent"
                             android:padding="8dp"
                             android:scaleType="centerInside"
-                            android:src="@drawable/vacuna"
-                            app:tint="@color/brand_green" />
+                            android:src="@drawable/vacuna"/>
                     </com.google.android.material.card.MaterialCardView>
 
                     <TextView
@@ -156,8 +155,7 @@
                             android:layout_height="match_parent"
                             android:padding="8dp"
                             android:scaleType="centerInside"
-                            android:src="@drawable/img_1"
-                            app:tint="@color/brand_green" />
+                            android:src="@drawable/img_1"/>
                     </com.google.android.material.card.MaterialCardView>
 
                     <TextView
