@@ -58,22 +58,22 @@ class InicioClienteFragment : Fragment(R.layout.fragment_inicio_cliente), IFragm
             (activity as? PanelPrincipalActivity)?.seleccionarItemMenu(R.id.nav_mascotas)
             parentFragmentManager.beginTransaction()
                 .setCustomAnimations(
-                    R.anim.slide_in_right,  // Animación al entrar
-                    R.anim.slide_out_left,  // Animación al salir lo anterior
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left,
                 )
                 .replace(R.id.nav_host_fragment, MascotasFragment())
-                .addToBackStack(null) // <--- ESTO ES LA CLAVE
+                .addToBackStack(null)
                 .commit()
         }
         binding.Adopcion.setOnClickListener {
             (activity as? PanelPrincipalActivity)?.seleccionarItemMenu(R.id.nav_adopcion)
             parentFragmentManager.beginTransaction()
                 .setCustomAnimations(
-                    R.anim.slide_in_right,  // Animación al entrar
-                    R.anim.slide_out_left,  // Animación al salir lo anterior
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left,
                 )
                 .replace(R.id.nav_host_fragment, EnAdopcionFragment())
-                .addToBackStack(null) // <--- ESTO ES LA CLAVE
+                .addToBackStack(null)
                 .commit()
         }
         binding.Vacunas.setOnClickListener {
@@ -105,19 +105,15 @@ class InicioClienteFragment : Fragment(R.layout.fragment_inicio_cliente), IFragm
         viewPager = view.findViewById(R.id.viewPagerCarousel)
         val tabLayout: TabLayout = view.findViewById(R.id.tabLayoutDots)
 
-        // Configurar Adaptador
         viewPager.adapter = CarouselAdapter(misImagenes)
 
-        // Conectar puntitos (TabLayout)
         TabLayoutMediator(tabLayout, viewPager) { _, _ -> }.attach()
 
-        // EFECTO VISUAL: Animación de escalado al deslizar
         viewPager.setPageTransformer { page, position ->
             val r = 1 - Math.abs(position)
             page.scaleY = 0.85f + r * 0.15f
         }
 
-        // Registrar el callback para resetear el timer cuando el usuario toque el carrusel
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -146,10 +142,8 @@ class InicioClienteFragment : Fragment(R.layout.fragment_inicio_cliente), IFragm
         val calendario = java.util.Calendar.getInstance().time
         val formato = java.text.SimpleDateFormat("EEE, d MMM", java.util.Locale("es", "PE"))
 
-        // 3. Formateamos y aplicamos al TextView
         val fechaFormateada = formato.format(calendario)
 
-        // Usamos .replaceFirstChar para que la primera letra sea Mayúscula (ej: "Mié" -> "Mié")
         binding.tvCurrentDate.text = "Hoy, ${fechaFormateada.replaceFirstChar { it.uppercase() }}"
     }
 
@@ -161,9 +155,6 @@ class InicioClienteFragment : Fragment(R.layout.fragment_inicio_cliente), IFragm
             .addOnSuccessListener { document ->
                 val usuario = document.toObject(Usuario::class.java)
                 binding.tvClientName.text = usuario?.nombreCompleto ?: "Bienvenido"
-
-                // 3. ¡AQUÍ ES DONDE LLAMAS A LAS MASCOTAS!
-                // Solo cuando ya sabemos que el usuario existe.
                 cargarMascotasDelCliente(userId)
             }
     }
@@ -174,8 +165,6 @@ class InicioClienteFragment : Fragment(R.layout.fragment_inicio_cliente), IFragm
                 if (e != null) return@addSnapshotListener
 
                 val listaMascotas = snapshot?.toObjects(MascotaIntro::class.java) ?: listOf()
-
-                // 4. Pasamos la lista al RecyclerView
                 configurarRecyclerViewMascotas(listaMascotas)
             }
     }
