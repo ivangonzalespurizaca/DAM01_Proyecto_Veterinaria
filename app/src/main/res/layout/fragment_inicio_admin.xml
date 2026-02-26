@@ -102,13 +102,13 @@
                         app:cardElevation="0dp"
                         app:cardBackgroundColor="@android:color/white">
                         <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/vacuna"
-                        android:scaleType="centerInside"
-                        android:padding="4dp" />
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/vacuna"
+                            android:scaleType="centerInside"
+                            android:padding="4dp" />
                     </com.google.android.material.card.MaterialCardView>
-                         />
+                    />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -146,11 +146,11 @@
                         app:cardElevation="0dp"
                         app:cardBackgroundColor="@android:color/white">
                         <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/img_1"
-                        android:scaleType="centerInside"
-                        android:padding="4dp" />
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/img_1"
+                            android:scaleType="centerInside"
+                            android:padding="4dp" />
                     </com.google.android.material.card.MaterialCardView>
                     <TextView
                         android:layout_width="wrap_content"
@@ -214,7 +214,6 @@
                     android:layout_marginStart="16dp"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tvCount1"
                     app:layout_constraintStart_toEndOf="@id/imgVac1"
                     app:layout_constraintTop_toTopOf="parent">
                     <TextView
@@ -413,14 +412,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardAdoptions" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvConsultas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginTop="12dp"
-                android:nestedScrollingEnabled="false"
-                app:layout_constraintTop_toBottomOf="@id/tvConsultasLabel" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvConsultas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="12dp"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/tvConsultasLabel" />
 
 
 
