@@ -2,153 +2,202 @@
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FBFBFB">
+    android:background="#F8F9FA">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:paddingBottom="40dp">
+
+        <View
+            android:id="@+id/vetHeaderBg"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:background="@drawable/wave_header"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tvGreetingVet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Resumen Operativo"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="#121212"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="¡Buen día, Doctor!"
+            android:textColor="#D1C4E9"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <GridLayout
+        <TextView
+            android:id="@+id/tvDocName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Resumen Operativo"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvGreetingVet" />
+
+        <LinearLayout
+            android:id="@+id/layoutStatsVet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:alignmentMode="alignMargins"
-            android:columnOrderPreserved="false">
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintTop_toBottomOf="@id/tvDocName">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="2dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="20dp"
-                    android:gravity="center">
+                    android:padding="20dp">
+
                     <TextView
                         android:id="@+id/tvCountAtenciones"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
                         android:text="0"
-                        android:textSize="32sp"
-                        android:textStyle="bold"
-                        android:textColor="#007AFF"/>
+                        android:textColor="#007AFF"
+                        android:textSize="32sp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_semibold"
                         android:text="Consultas"
-                        android:textSize="12sp"
-                        android:textColor="#888888"/>
+                        android:textColor="#888888"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="2dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="20dp"
-                    android:gravity="center">
+                    android:padding="20dp">
+
                     <TextView
                         android:id="@+id/tvCountPendientes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
                         android:text="0"
-                        android:textSize="32sp"
-                        android:textStyle="bold"
-                        android:textColor="#FF9500"/>
+                        android:textColor="#FF9500"
+                        android:textSize="32sp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_semibold"
                         android:text="Pendientes"
-                        android:textSize="12sp"
-                        android:textColor="#888888"/>
+                        android:textColor="#888888"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-        </GridLayout>
+        </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSiguientePaciente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
             android:layout_marginTop="16dp"
-            app:cardCornerRadius="24dp"
+            app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            app:strokeWidth="1dp"
-            app:strokeColor="#E0E0E0">
+            app:layout_constraintTop_toBottomOf="@id/layoutStatsVet"
+            app:strokeColor="#E0E0E0"
+            app:strokeWidth="1dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:padding="20dp">
+
                 <ImageView
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:src="@android:drawable/ic_menu_agenda"
-                    app:tint="#448AFF"/>
+                    app:tint="#448AFF" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tvProximaCitaNombre"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
                         android:text="Siguiente Paciente"
-                        android:textStyle="bold"
                         android:textColor="#121212"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
+
                     <TextView
                         android:id="@+id/tvProximaCitaHora"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_semibold"
                         android:text="Cargando próximo..."
                         android:textColor="#888888"
-                        android:textSize="13sp"/>
+                        android:textSize="13sp" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
+            android:id="@+id/tvAgendaLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Agenda Médica 📅"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#121212"
-            android:layout_marginTop="32dp"/>
+            android:textColor="@color/text_secondary"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardSiguientePaciente" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardCalendario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="20dp"
             app:cardCornerRadius="20dp"
-            app:cardElevation="4dp">
+            app:cardElevation="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvAgendaLabel">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -163,36 +212,37 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#EEEEEE"/>
+                    android:background="#EEEEEE" />
 
                 <LinearLayout
                     android:id="@+id/layoutInfoCitas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#F8F9FA"
                     android:orientation="vertical"
-                    android:padding="20dp"
-                    android:background="#F8F9FA">
+                    android:padding="20dp">
 
                     <TextView
                         android:id="@+id/tvFechaSeleccionada"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
                         android:text="Seleccione una fecha"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:textColor="#1A1A1A"/>
+                        android:textColor="#1A1A1A"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tvResumenCitas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Toque un día para verificar disponibilidad"
+                        android:fontFamily="@font/montserrat_semibold"
                         android:lineSpacingExtra="4dp"
-                        android:textColor="#888888"/>
+                        android:text="Toque un día para verificar disponibilidad"
+                        android:textColor="#888888" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

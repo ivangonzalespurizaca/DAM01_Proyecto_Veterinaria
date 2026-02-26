@@ -8,7 +8,7 @@ import androidx.fragment.app.activityViewModels
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.ivandev.proyectoveterinaria.R
-import com.ivandev.proyectoveterinaria.UsuarioDBHelper
+import com.ivandev.proyectoveterinaria.room.DBHelper
 import com.ivandev.proyectoveterinaria.databinding.FragmentVerificationBinding
 import com.ivandev.proyectoveterinaria.viewmodel.RegistroClienteViewModel
 
@@ -19,7 +19,7 @@ class VerificationFragment : Fragment(R.layout.fragment_verification) {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
-    private lateinit var dbHelper: UsuarioDBHelper
+    private lateinit var dbHelper: DBHelper
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,7 +27,7 @@ class VerificationFragment : Fragment(R.layout.fragment_verification) {
 
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
-        dbHelper = UsuarioDBHelper(requireContext())
+        dbHelper = DBHelper.getInstance(requireContext())
 
         binding.btnConfirmarVerificacion.setOnClickListener {
             verificarEstadoDeCorreo()

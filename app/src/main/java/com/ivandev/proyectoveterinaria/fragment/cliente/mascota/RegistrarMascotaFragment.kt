@@ -22,6 +22,7 @@ import com.ivandev.proyectoveterinaria.activity.PanelPrincipalActivity
 import com.ivandev.proyectoveterinaria.databinding.FragmentRegistrarMascotaBinding
 import com.ivandev.proyectoveterinaria.interfaces.IFragmentoToolbar
 import com.ivandev.proyectoveterinaria.model.Mascota
+import com.ivandev.proyectoveterinaria.room.DBHelper
 import com.ivandev.proyectoveterinaria.viewmodel.EspeciesViewModel
 import com.ivandev.proyectoveterinaria.viewmodel.MascotaViewModel
 import com.ivandev.proyectoveterinaria.viewmodel.RazasViewModel
@@ -38,7 +39,7 @@ class RegistrarMascotaFragment : Fragment(R.layout.fragment_registrar_mascota), 
     private var imageUri: Uri? = null
     private var especieSeleccionadaId: String = ""
     private var razaSeleccionadaId: String = ""
-
+    private lateinit var dbHelper: DBHelper
     private val viewModel: MascotaViewModel by viewModels()
     private val especieViewModel: EspeciesViewModel by viewModels()
     private val razaViewModel: RazasViewModel by viewModels()
@@ -53,6 +54,7 @@ class RegistrarMascotaFragment : Fragment(R.layout.fragment_registrar_mascota), 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        dbHelper = DBHelper.getInstance(requireContext())
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentRegistrarMascotaBinding.bind(view)
 
@@ -203,7 +205,7 @@ class RegistrarMascotaFragment : Fragment(R.layout.fragment_registrar_mascota), 
     }
 
     private fun setupCatalogos() {
-        especieViewModel.cargarEspecies()
+        especieViewModel.cargarEspecies(dbHelper)
         especieViewModel.listaEspecies.observe(viewLifecycleOwner) { especies ->
             val adapter = ArrayAdapter(requireContext(), R.layout.list_item, especies.map { it.nombre })
             binding.actvEspecie.setAdapter(adapter)
@@ -230,7 +232,7 @@ class RegistrarMascotaFragment : Fragment(R.layout.fragment_registrar_mascota), 
     }
 
     private fun cargarRazasPorEspecie(idEspecie: String) {
-        razaViewModel.obtenerRazasPorEspecie(idEspecie).observe(viewLifecycleOwner) { razas ->
+        razaViewModel.obtenerRazasPorEspecie(idEspecie, dbHelper).observe(viewLifecycleOwner) { razas ->
             val adapter = ArrayAdapter(requireContext(), R.layout.list_item, razas.map { it.nombre })
             binding.actvRaza.setAdapter(adapter)
 

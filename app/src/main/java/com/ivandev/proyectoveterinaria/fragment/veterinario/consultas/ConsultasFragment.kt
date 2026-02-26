@@ -15,6 +15,7 @@ import com.ivandev.proyectoveterinaria.adapter.MascotaBusquedaAdapter
 import com.ivandev.proyectoveterinaria.databinding.FragmentConsultasBinding
 import com.ivandev.proyectoveterinaria.interfaces.IFragmentoToolbar
 import com.ivandev.proyectoveterinaria.model.Mascota
+import com.ivandev.proyectoveterinaria.room.DBHelper
 import com.ivandev.proyectoveterinaria.viewmodel.EspeciesViewModel
 import com.ivandev.proyectoveterinaria.viewmodel.MascotaViewModel
 import com.ivandev.proyectoveterinaria.viewmodel.RazasViewModel
@@ -26,6 +27,7 @@ class ConsultasFragment : Fragment(R.layout.fragment_consultas), IFragmentoToolb
 
     private var _binding: FragmentConsultasBinding? = null
     private val binding get() = _binding!!
+    private lateinit var dbHelper: DBHelper
 
     // ViewModels necesarios para búsqueda y catálogos
     private val viewModel: MascotaViewModel by viewModels()
@@ -45,6 +47,7 @@ class ConsultasFragment : Fragment(R.layout.fragment_consultas), IFragmentoToolb
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        dbHelper = DBHelper.getInstance(requireContext())
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentConsultasBinding.bind(view)
 
@@ -84,8 +87,8 @@ class ConsultasFragment : Fragment(R.layout.fragment_consultas), IFragmentoToolb
     }
 
     private fun cargarCatalogos() {
-        especieViewModel.cargarEspecies()
-        razaViewModel.cargarRazas()
+        especieViewModel.cargarEspecies(dbHelper)
+        razaViewModel.cargarRazas(dbHelper)
 
         especieViewModel.listaEspecies.observe(viewLifecycleOwner) { especies ->
             especiesMap = especies.associate { it.id to it.nombre }

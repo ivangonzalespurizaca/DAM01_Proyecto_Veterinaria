@@ -13,6 +13,7 @@ import com.ivandev.proyectoveterinaria.adapter.MascotaAdapter
 import com.ivandev.proyectoveterinaria.databinding.FragmentMascotasBinding
 import com.ivandev.proyectoveterinaria.interfaces.IFragmentoToolbar
 import com.ivandev.proyectoveterinaria.model.Mascota
+import com.ivandev.proyectoveterinaria.room.DBHelper
 import com.ivandev.proyectoveterinaria.viewmodel.EspeciesViewModel
 import com.ivandev.proyectoveterinaria.viewmodel.MascotaViewModel
 import com.ivandev.proyectoveterinaria.viewmodel.RazasViewModel
@@ -28,13 +29,14 @@ class MascotasFragment : Fragment(R.layout.fragment_mascotas), IFragmentoToolbar
     private val viewModel: MascotaViewModel by viewModels()
     private val especieViewModel: EspeciesViewModel by viewModels()
     private val razaViewModel: RazasViewModel by viewModels()
-
+    private lateinit var dbHelper: DBHelper
     private lateinit var mascotaAdapter: MascotaAdapter
     private var listaOriginal = listOf<Mascota>()
     private var especiesMap = mapOf<String, String>()
     private var razasMap = mapOf<String, String>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        dbHelper = DBHelper.getInstance(requireContext())
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMascotasBinding.bind(view)
 
@@ -63,8 +65,8 @@ class MascotasFragment : Fragment(R.layout.fragment_mascotas), IFragmentoToolbar
     }
 
     private fun cargarCatalogosYDatos() {
-        especieViewModel.cargarEspecies()
-        razaViewModel.cargarRazas()
+        especieViewModel.cargarEspecies(dbHelper)
+        razaViewModel.cargarRazas(dbHelper)
 
         especieViewModel.listaEspecies.observe(viewLifecycleOwner) { listaEsp ->
             especiesMap = listaEsp.associate { it.id to it.nombre }

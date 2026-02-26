@@ -5,30 +5,51 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import com.ivandev.proyectoveterinaria.model.Raza
+import com.ivandev.proyectoveterinaria.room.DBHelper
 
 class RazasViewModel : ViewModel() {
     private val firestore = FirebaseFirestore.getInstance()
     private val _listaRazas = MutableLiveData<List<Raza>>()
     val listaRazas: LiveData<List<Raza>> get() = _listaRazas
 
-    fun cargarRazas() {
+    fun cargarRazas(dbHelper: DBHelper) {
         firestore.collection("razas").get().addOnSuccessListener { snapshot ->
-            _listaRazas.value = snapshot.toObjects(Raza::class.java)
+            val razas = snapshot.toObjects(Raza::class.java)
+
+            // Sincronización local
+            for (raza in razas) {
+                try {
+                    dbHelper.insertarRaza(raza)
+                } catch (e: Exception) {
+                    dbHelper.actualizarRaza(raza)
+                }
+            }
+            _listaRazas.value = razas
         }
     }
 
-    fun guardarRaza(raza: Raza, onResult: (Boolean) -> Unit) {
+    fun guardarRaza(raza: Raza, dbHelper: DBHelper, onResult: (Boolean) -> Unit) {
         val db = firestore.collection("razas")
         val doc = if (raza.id.isEmpty()) db.document() else db.document(raza.id)
         val razaFinal = if (raza.id.isEmpty()) raza.copy(id = doc.id) else raza
 
         doc.set(razaFinal)
-            .addOnSuccessListener { cargarRazas(); onResult(true) }
+            .addOnSuccessListener {
+                try {
+                    if (raza.id.isEmpty()) dbHelper.insertarRaza(razaFinal)
+                    else dbHelper.actualizarRaza(razaFinal)
+                } catch (e: Exception) {
+                    dbHelper.actualizarRaza(razaFinal)
+                }
+
+                cargarRazas(dbHelper)
+                onResult(true)
+            }
             .addOnFailureListener { onResult(false) }
     }
 
-    fun eliminarRaza(id: String, onResult: (Boolean, String?) -> Unit) {
-        // 1. Primera parada: Verificar en la colección de mascotas generales
+    fun eliminarRaza(id: String, dbHelper: DBHelper, onResult: (Boolean, String?) -> Unit) {
+        // Verificación de dependencias en la nube antes de borrar
         firestore.collection("mascotas").whereEqualTo("id_raza", id).limit(1).get()
             .addOnSuccessListener { snapshotMascotas ->
                 if (!snapshotMascotas.isEmpty) {
@@ -39,12 +60,14 @@ class RazasViewModel : ViewModel() {
                 firestore.collection("mascota_adopcion").whereEqualTo("idRaza", id).limit(1).get()
                     .addOnSuccessListener { snapshotAdopcion ->
                         if (!snapshotAdopcion.isEmpty) {
-                            onResult(false, "No se puede eliminar: Hay mascotas en adopción.")
+                            onResult(false, "No se puede eliminar: Hay mascotas en adopción vinculadas.")
                         } else {
-                            // 3. Si ambas están vacías, procedemos al borrado final
+                            // Borrado en Firebase
                             firestore.collection("razas").document(id).delete()
                                 .addOnSuccessListener {
-                                    cargarRazas()
+                                    // Borrado en SQLite local
+                                    dbHelper.eliminarRaza(id)
+                                    cargarRazas(dbHelper)
                                     onResult(true, null)
                                 }
                                 .addOnFailureListener {
@@ -52,22 +75,28 @@ class RazasViewModel : ViewModel() {
                                 }
                         }
                     }
-                    .addOnFailureListener { onResult(false, "Error al conectar con el catálogo de adopción.") }
             }
-            .addOnFailureListener { onResult(false, "Error al verificar la base de datos de la clínica.") }
     }
 
-    fun obtenerRazasPorEspecie(idEspecie: String): LiveData<List<Raza>> {
+    fun obtenerRazasPorEspecie(idEspecie: String, dbHelper: DBHelper): LiveData<List<Raza>> {
         val razasFiltradas = MutableLiveData<List<Raza>>()
 
         firestore.collection("razas")
-            .whereEqualTo("idEspecie", idEspecie) // Asegúrate que en Firestore el campo se llame igual que en tu modelo
+            .whereEqualTo("idEspecie", idEspecie)
             .get()
             .addOnSuccessListener { snapshot ->
-                razasFiltradas.value = snapshot.toObjects(Raza::class.java)
+                val lista = snapshot.toObjects(Raza::class.java)
+
+                // Actualizar SQLite local con los resultados filtrados
+                for (r in lista) {
+                    try { dbHelper.insertarRaza(r) } catch (e: Exception) { dbHelper.actualizarRaza(r) }
+                }
+
+                razasFiltradas.value = lista
             }
             .addOnFailureListener {
-                razasFiltradas.value = emptyList()
+                // Si no hay conexión, cargar desde el catálogo local de SQLite
+                razasFiltradas.value = dbHelper.listarRazasPorEspecie(idEspecie)
             }
 
         return razasFiltradas

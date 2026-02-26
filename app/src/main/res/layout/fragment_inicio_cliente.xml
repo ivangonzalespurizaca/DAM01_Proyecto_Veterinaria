@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8F9FA">
@@ -16,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:background="@drawable/wave_header"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp" />
 
         <TextView
             android:id="@+id/tvGreeting"
@@ -24,9 +26,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
+            android:fontFamily="@font/montserrat_semibold"
             android:text="¡Hola de nuevo!"
             android:textColor="#D1C4E9"
-            android:textSize="14sp"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,28 +38,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:fontFamily="@font/montserrat_bold"
+
             android:text="Carlos Mendoza"
             android:textColor="@android:color/white"
-            android:textSize="28sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvGreeting" />
+
 
         <TextView
             android:id="@+id/tvCurrentDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
             android:paddingHorizontal="12dp"
             android:paddingVertical="6dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Hoy, 25 Feb"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/tvClientName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvGreeting" />
-
+            app:layout_constraintHorizontal_bias="0.957"
+            app:layout_constraintStart_toEndOf="@+id/tvGreeting"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPagerCarousel"
@@ -87,10 +95,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="¿Qué necesitas hoy?"
-            android:textColor="#333333"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textColor="@color/text_secondary"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tabLayoutDots" />
 
@@ -113,16 +121,16 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    app:cardBackgroundColor="#E3F2FD"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="0dp">
                     <ImageView
                         android:id="@+id/citas"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        app:tint="@color/brand_green"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_especies"
-                         />
+                        android:src="@drawable/ic_especies"/>
                 </com.google.android.material.card.MaterialCardView>
                 <TextView
                     android:layout_width="wrap_content"
@@ -130,6 +138,7 @@
                     android:layout_marginTop="8dp"
                     android:text="Citas"
                     android:textColor="#666666"
+                    android:fontFamily="@font/montserrat_bold"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -143,7 +152,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    app:cardBackgroundColor="#E8F5E9"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="0dp">
                     <ImageView
@@ -152,13 +161,14 @@
                         android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_vaccine"
-                        app:tint="#4CAF50" />
+                        app:tint="@color/soft_blue" />
                 </com.google.android.material.card.MaterialCardView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Vacunas"
+                    android:fontFamily="@font/montserrat_bold"
                     android:textColor="#666666"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -173,13 +183,14 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    app:cardBackgroundColor="#FFF0F5"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="0dp">
                     <ImageView
                         android:id="@+id/Adopcion"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        app:tint="@color/new_blue"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_pet"
                          />
@@ -189,6 +200,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Adopción"
+                    android:fontFamily="@font/montserrat_bold"
                     android:textColor="#666666"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -202,8 +214,9 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
             android:text="Mis Mascotas"
-            android:textColor="#333333"
-            android:textSize="18sp"
+            android:textColor="@color/text_secondary"
+            android:textSize="16sp"
+            android:fontFamily="@font/montserrat_bold"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutQuickServices" />
@@ -214,8 +227,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:text="Ver todas"
-            android:textColor="#2196F3"
-            android:textSize="14sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/brand_green"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/tvMisMascotasLabel"
             app:layout_constraintEnd_toEndOf="parent"

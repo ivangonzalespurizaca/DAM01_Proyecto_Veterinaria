@@ -14,6 +14,7 @@ import com.ivandev.proyectoveterinaria.databinding.FragmentRegistrarAplicacionVa
 import com.ivandev.proyectoveterinaria.interfaces.IFragmentoToolbar
 import com.ivandev.proyectoveterinaria.model.Mascota
 import com.ivandev.proyectoveterinaria.model.VacunaAplicada
+import com.ivandev.proyectoveterinaria.room.DBHelper
 import com.ivandev.proyectoveterinaria.viewmodel.VacunaAplicadaViewModel
 import com.ivandev.proyectoveterinaria.viewmodel.VacunasViewModel
 import java.text.SimpleDateFormat
@@ -30,13 +31,14 @@ class RegistrarAplicacionVacunaFragment : Fragment(R.layout.fragment_registrar_a
     private val vacunaViewModel : VacunasViewModel by viewModels ()
     private var mascota: Mascota? = null
     private val calendar = Calendar.getInstance()
+    private lateinit var dbHelper: DBHelper
     private var vacunaAEditar: VacunaAplicada? = null
     private val dateFormatter = SimpleDateFormat("yyyy/dd/MM", Locale.getDefault())
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegistrarAplicacionVacunaBinding.bind(view)
-
+        dbHelper = DBHelper.getInstance(requireContext())
         binding.switchEsProgramada.setOnCheckedChangeListener { _, isChecked ->
             actualizarVisibilidadFechas(isChecked)
         }
@@ -61,7 +63,7 @@ class RegistrarAplicacionVacunaFragment : Fragment(R.layout.fragment_registrar_a
         }
 
         setupDatePickers()
-        vacunaViewModel.cargarVacunas()
+        vacunaViewModel.cargarVacunas(dbHelper)
         setupCatalogObserver()
         setupListeners()
     }

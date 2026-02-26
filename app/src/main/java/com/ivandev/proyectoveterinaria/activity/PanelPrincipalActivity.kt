@@ -25,12 +25,14 @@ import com.ivandev.proyectoveterinaria.fragment.veterinario.InicioVeterinarioFra
 import com.ivandev.proyectoveterinaria.fragment.veterinario.solicitud.SolicitudFragment
 import com.ivandev.proyectoveterinaria.interfaces.IFragmentoToolbar
 import com.ivandev.proyectoveterinaria.model.Usuario
+import com.ivandev.proyectoveterinaria.room.DBHelper
 
 class PanelPrincipalActivity : AppCompatActivity() {
     private lateinit var binding : ActivityPanelPrincipalBinding
     private var userRole: String? = null
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
+    private lateinit var dbHelper: DBHelper
 
     enum class TipoToolbar { PRINCIPAL, PERFIL, SECUNDARIO }
 
@@ -43,6 +45,12 @@ class PanelPrincipalActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
+
+        // 2. Inicializar el Singleton
+        dbHelper = DBHelper.getInstance(this)
+
+        // 3. Forzar apertura para el Database Inspector
+        dbHelper.writableDatabase
 
         cargarDatosUsuario()
 
@@ -125,6 +133,10 @@ class PanelPrincipalActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    fun seleccionarItemMenu(itemId: Int) {
+        binding.bottomNavigation.selectedItemId = itemId
     }
 
     fun replaceFragment(fragment: Fragment, addToBackStack: Boolean = true) {

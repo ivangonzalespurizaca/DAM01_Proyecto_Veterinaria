@@ -3,11 +3,15 @@ package com.ivandev.proyectoveterinaria.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.ivandev.proyectoveterinaria.model.MascotaAdopcion
 import com.ivandev.proyectoveterinaria.model.SolicitudAdopcion
+import kotlinx.coroutines.launch
+import com.ivandev.proyectoveterinaria.network.MascotaAdopcionModel
+import com.ivandev.proyectoveterinaria.network.RetrofitClient
 
 class MascotaAdopcionViewModel : ViewModel() {
     private val firestore = FirebaseFirestore.getInstance()
@@ -22,6 +26,7 @@ class MascotaAdopcionViewModel : ViewModel() {
     // Variables de control para evitar "rebotes" y fugas de datos
     private var listaCompletaSolicitudes = listOf<SolicitudAdopcion>()
     private var filtroEstadoActual = "Todos"
+    val mensajeEstado = MutableLiveData<String>()
 
     // --- SECCIÓN: VETERINARIO (Solicitudes Globales) ---
 
@@ -111,7 +116,48 @@ class MascotaAdopcionViewModel : ViewModel() {
         }
     }
 
+
+
     fun cargarMascotas() {
+        // Iniciamos una corrutina para no bloquear el hilo principal (UI)
+        viewModelScope.launch {
+            mensajeEstado.postValue("Conectando con el servidor...")
+            try {
+                // 1. INTENTO POR API (Render/PostgreSQL)
+                val response = RetrofitClient.mascotaAdopcionService.listarMascotas()
+
+                if (response.isSuccessful && !response.body().isNullOrEmpty()) {
+                    // Mapeamos el modelo de la API al modelo que usa tu App si son diferentes
+                    val listaMascotasApi = response.body()!!.map { apiModel ->
+                        MascotaAdopcion(
+                            idMascotaAdopcion = apiModel.idMascota ?: "",
+                            nombreMascota = apiModel.nombreMascota,
+                            idRaza = apiModel.idRaza,
+                            idEspecie = apiModel.idEspecie,
+                            nombreRaza = apiModel.nombreRaza,
+                            nombreEspecie = apiModel.nombreEspecie,
+                            sexo = apiModel.sexo,
+                            descripcion = apiModel.descripcion,
+                            contacto = apiModel.contacto,
+                            edadEstimada = apiModel.edadEstimada,
+                            estado = apiModel.estado,
+                            foto = apiModel.fotoUrl
+                        )
+                    }
+                    _listaMascotas.postValue(listaMascotasApi)
+                    mensajeEstado.postValue("Datos actualizados desde Render")
+                } else {
+                    mensajeEstado.postValue("Servidor en reposo. Cargando respaldo...")
+                    cargarMascotasDesdeFirebase()
+                }
+            } catch (e: Exception) {
+                // 3. FALLBACK: Si hay error de red (Timeout en Render o sin internet)
+                cargarMascotasDesdeFirebase()
+            }
+        }
+    }
+
+    private fun cargarMascotasDesdeFirebase() {
         firestore.collection("mascota_adopcion")
             .get()
             .addOnSuccessListener { snapshot ->

@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.ivandev.proyectoveterinaria.R
-import com.ivandev.proyectoveterinaria.UsuarioDBHelper
 import com.ivandev.proyectoveterinaria.databinding.FragmentPaso2Binding
 import com.ivandev.proyectoveterinaria.viewmodel.RegistroClienteViewModel
 
@@ -17,14 +16,12 @@ class Paso2Fragment : Fragment(R.layout.fragment_paso2) {
     private val registroClienteViewModel: RegistroClienteViewModel by activityViewModels()
     private var _binding: FragmentPaso2Binding? = null
     private val binding get() = _binding!!
-    private lateinit var dbHelper: UsuarioDBHelper
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPaso2Binding.bind(view)
-        dbHelper = UsuarioDBHelper(requireContext())
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 

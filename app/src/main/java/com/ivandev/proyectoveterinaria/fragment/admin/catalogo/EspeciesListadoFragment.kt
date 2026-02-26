@@ -18,6 +18,7 @@ import com.ivandev.proyectoveterinaria.adapter.EspecieAdapter
 import com.ivandev.proyectoveterinaria.databinding.FragmentEspeciesListadoBinding
 import com.ivandev.proyectoveterinaria.interfaces.IFragmentoToolbar
 import com.ivandev.proyectoveterinaria.model.Especie
+import com.ivandev.proyectoveterinaria.room.DBHelper
 import com.ivandev.proyectoveterinaria.viewmodel.EspeciesViewModel
 
 class EspeciesListadoFragment : Fragment(R.layout.fragment_especies_listado), IFragmentoToolbar {
@@ -25,11 +26,13 @@ class EspeciesListadoFragment : Fragment(R.layout.fragment_especies_listado), IF
     override val tipo: PanelPrincipalActivity.TipoToolbar = PanelPrincipalActivity.TipoToolbar.SECUNDARIO
     private var _binding: FragmentEspeciesListadoBinding? = null
     private val binding get() = _binding!!
+    private lateinit var dbHelper: DBHelper
     private val viewModel: EspeciesViewModel by viewModels()
     private lateinit var adapterEspecie: EspecieAdapter
     private var listaOriginal = listOf<Especie>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        dbHelper = DBHelper.getInstance(requireContext())
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentEspeciesListadoBinding.bind(view)
 
@@ -42,7 +45,7 @@ class EspeciesListadoFragment : Fragment(R.layout.fragment_especies_listado), IF
             abrirEditorEspecie()
         }
 
-        viewModel.cargarEspecies()
+        viewModel.cargarEspecies(dbHelper)
     }
 
     private fun setupRecyclerView() {
@@ -58,7 +61,7 @@ class EspeciesListadoFragment : Fragment(R.layout.fragment_especies_listado), IF
             .setTitle("¿Eliminar ${especie.nombre}?")
             .setMessage("Esta acción verificará si existen razas asociadas.")
             .setPositiveButton("ELIMINAR") { _, _ ->
-                viewModel.eliminarEspecie(especie.id) { exito, error ->
+                viewModel.eliminarEspecie(especie.id, dbHelper) { exito, error ->
                     if (exito) {
                         Toast.makeText(context, "Especie eliminada", Toast.LENGTH_SHORT).show()
                     } else {
@@ -140,7 +143,7 @@ class EspeciesListadoFragment : Fragment(R.layout.fragment_especies_listado), IF
                 definicion = definicion
             )
 
-            viewModel.guardarEspecie(especieData) { exito ->
+            viewModel.guardarEspecie(especieData, dbHelper) { exito ->
                 if (exito) {
                     Toast.makeText(requireContext(), "Cambios guardados", Toast.LENGTH_SHORT).show()
                     dialog.dismiss()

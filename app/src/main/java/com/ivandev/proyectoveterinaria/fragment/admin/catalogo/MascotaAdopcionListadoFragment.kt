@@ -12,6 +12,7 @@ import com.ivandev.proyectoveterinaria.adapter.MascotasEnAdopcionAdapter
 import com.ivandev.proyectoveterinaria.databinding.FragmentMascotaAdopcionListadoBinding
 import com.ivandev.proyectoveterinaria.interfaces.IFragmentoToolbar
 import com.ivandev.proyectoveterinaria.model.MascotaAdopcion
+import com.ivandev.proyectoveterinaria.room.DBHelper
 import com.ivandev.proyectoveterinaria.viewmodel.EspeciesViewModel
 import com.ivandev.proyectoveterinaria.viewmodel.MascotaAdopcionViewModel
 import com.ivandev.proyectoveterinaria.viewmodel.RazasViewModel
@@ -26,13 +27,14 @@ class MascotaAdopcionListadoFragment : Fragment(R.layout.fragment_mascota_adopci
     private val viewModel: MascotaAdopcionViewModel by viewModels()
     private val especieViewModel: EspeciesViewModel by viewModels()
     private val razaViewModel: RazasViewModel by viewModels()
-
+    private lateinit var dbHelper: DBHelper
     private lateinit var mascotaAdapter: MascotasEnAdopcionAdapter
     private var listaOriginal = listOf<MascotaAdopcion>()
     private var especiesMap = mapOf<String, String>()
     private var razasMap = mapOf<String, String>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        dbHelper = DBHelper.getInstance(requireContext())
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMascotaAdopcionListadoBinding.bind(view)
 
@@ -57,8 +59,8 @@ class MascotaAdopcionListadoFragment : Fragment(R.layout.fragment_mascota_adopci
 
     private fun cargarCatalogosYDatos() {
         // 1. Disparamos la carga en los ViewModels
-        especieViewModel.cargarEspecies()
-        razaViewModel.cargarRazas()
+        especieViewModel.cargarEspecies(dbHelper)
+        razaViewModel.cargarRazas(dbHelper)
 
         // 2. Observamos especies
         especieViewModel.listaEspecies.observe(viewLifecycleOwner) { listaEsp ->
@@ -88,6 +90,9 @@ class MascotaAdopcionListadoFragment : Fragment(R.layout.fragment_mascota_adopci
             // Actualizamos los mapas en el adaptador actual si ya existe
             mascotaAdapter.actualizarMapas(especiesMap, razasMap)
             mascotaAdapter.actualizarLista(lista)
+        }
+        viewModel.mensajeEstado.observe(viewLifecycleOwner) { mensaje ->
+            android.widget.Toast.makeText(requireContext(), mensaje, android.widget.Toast.LENGTH_SHORT).show()
         }
         viewModel.cargarMascotas()
     }

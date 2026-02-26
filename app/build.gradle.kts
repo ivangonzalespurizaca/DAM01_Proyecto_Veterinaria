@@ -60,6 +60,10 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.8")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.8")
 
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    implementation(libs.okhttp.logging)
+
     // 3. Ajustamos Lifecycle
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
 

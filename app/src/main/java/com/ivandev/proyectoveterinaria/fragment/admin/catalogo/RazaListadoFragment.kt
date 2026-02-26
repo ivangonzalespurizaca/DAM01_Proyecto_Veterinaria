@@ -25,6 +25,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.ivandev.proyectoveterinaria.activity.PanelPrincipalActivity
 import com.ivandev.proyectoveterinaria.interfaces.IFragmentoToolbar
 import com.ivandev.proyectoveterinaria.model.Raza
+import com.ivandev.proyectoveterinaria.room.DBHelper
 
 class RazaListadoFragment : Fragment(R.layout.fragment_raza_listado), IFragmentoToolbar {
     override val titulo: String = "RAZAS"
@@ -32,13 +33,16 @@ class RazaListadoFragment : Fragment(R.layout.fragment_raza_listado), IFragmento
     private var _binding: FragmentRazaListadoBinding? = null
     private val binding get() = _binding!!
     private val viewModelRazas: RazasViewModel by viewModels()
+    private lateinit var dbHelper: DBHelper
     private val viewModelEspecies: EspeciesViewModel by viewModels()
     private var listaOriginal = listOf<Raza>()
 
     private lateinit var adapterRaza: RazaAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        dbHelper = DBHelper.getInstance(requireContext())
         super.onViewCreated(view, savedInstanceState)
+        dbHelper = DBHelper.getInstance(requireContext())
         _binding = FragmentRazaListadoBinding.bind(view)
 
         setupRecyclerView()
@@ -50,8 +54,8 @@ class RazaListadoFragment : Fragment(R.layout.fragment_raza_listado), IFragmento
             abrirEditorRaza()
         }
 
-        viewModelEspecies.cargarEspecies()
-        viewModelRazas.cargarRazas()
+        viewModelEspecies.cargarEspecies(dbHelper)
+        viewModelRazas.cargarRazas(dbHelper)
     }
 
     private fun observeData() {
@@ -140,7 +144,7 @@ class RazaListadoFragment : Fragment(R.layout.fragment_raza_listado), IFragmento
                 idEspecie = idEspecieSeleccionada
             )
 
-            viewModelRazas.guardarRaza(razaData) { exito ->
+            viewModelRazas.guardarRaza(razaData, dbHelper) { exito ->
                 if (exito) {
                     Toast.makeText(requireContext(), "Raza guardada", Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
@@ -157,7 +161,7 @@ class RazaListadoFragment : Fragment(R.layout.fragment_raza_listado), IFragmento
             .setTitle("¿Eliminar ${raza.nombre}?")
             .setMessage("Esta acción verificará si existen mascotas registradas con esta raza.")
             .setPositiveButton("ELIMINAR") { _, _ ->
-                viewModelRazas.eliminarRaza(raza.id) { exito, error ->
+                viewModelRazas.eliminarRaza(raza.id, dbHelper) { exito, error ->
                     if (exito) {
                         Toast.makeText(context, "Raza eliminada", Toast.LENGTH_SHORT).show()
                     } else {

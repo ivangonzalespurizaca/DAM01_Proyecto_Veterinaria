@@ -18,21 +18,22 @@ import com.ivandev.proyectoveterinaria.adapter.VacunaAdapter
 import com.ivandev.proyectoveterinaria.databinding.FragmentVacunaListadoBinding
 import com.ivandev.proyectoveterinaria.interfaces.IFragmentoToolbar
 import com.ivandev.proyectoveterinaria.model.Vacuna
+import com.ivandev.proyectoveterinaria.room.DBHelper
 import com.ivandev.proyectoveterinaria.viewmodel.VacunasViewModel
 
 class VacunasListadoFragment : Fragment(R.layout.fragment_vacuna_listado), IFragmentoToolbar {
 
     override val titulo: String = "CATÁLOGO DE VACUNAS"
     override val tipo: PanelPrincipalActivity.TipoToolbar = PanelPrincipalActivity.TipoToolbar.SECUNDARIO
-
     private var _binding: FragmentVacunaListadoBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var dbHelper: DBHelper
     private val viewModel: VacunasViewModel by viewModels()
     private lateinit var adapterVacuna: VacunaAdapter
     private var listaOriginal = listOf<Vacuna>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        dbHelper = DBHelper.getInstance(requireContext())
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentVacunaListadoBinding.bind(view)
 
@@ -44,7 +45,7 @@ class VacunasListadoFragment : Fragment(R.layout.fragment_vacuna_listado), IFrag
             abrirEditorVacuna()
         }
 
-        viewModel.cargarVacunas()
+        viewModel.cargarVacunas(dbHelper)
     }
 
     private fun setupRecyclerView() {
@@ -110,7 +111,7 @@ class VacunasListadoFragment : Fragment(R.layout.fragment_vacuna_listado), IFrag
             }
 
             val vacunaData = Vacuna(idVacuna = vacuna?.idVacuna ?: "", nombreVacuna = nombre)
-            viewModel.guardarVacuna(vacunaData) { exito ->
+            viewModel.guardarVacuna(vacunaData, dbHelper) { exito ->
                 if (exito) {
                     Toast.makeText(requireContext(), "Vacuna guardada", Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
@@ -127,7 +128,7 @@ class VacunasListadoFragment : Fragment(R.layout.fragment_vacuna_listado), IFrag
             .setTitle("¿Eliminar ${vacuna.nombreVacuna}?")
             .setMessage("Se verificará si la vacuna ya ha sido aplicada a alguna mascota.")
             .setPositiveButton("ELIMINAR") { _, _ ->
-                viewModel.eliminarVacuna(vacuna.idVacuna) { exito, error ->
+                viewModel.eliminarVacuna(vacuna.idVacuna, dbHelper) { exito, error ->
                     if (exito) {
                         Toast.makeText(context, "Vacuna eliminada", Toast.LENGTH_SHORT).show()
                     } else {

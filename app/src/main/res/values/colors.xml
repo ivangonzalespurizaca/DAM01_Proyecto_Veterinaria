@@ -3,7 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-
+    <color name="new_blue">#2196F3</color>
     <color name="brand_background">#F8F9FA</color>
     <color name="brand_blue">#023E8A</color>
     <color name="soft_blue">#094EAD</color>

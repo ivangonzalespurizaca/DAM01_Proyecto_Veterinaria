@@ -19,6 +19,7 @@ import com.ivandev.proyectoveterinaria.adapter.MascotaClienteAdapter
 import com.ivandev.proyectoveterinaria.databinding.FragmentInicioClienteBinding
 import com.ivandev.proyectoveterinaria.fragment.admin.catalogo.VacunasListadoFragment
 import com.ivandev.proyectoveterinaria.fragment.cliente.enAdopcion.EnAdopcionFragment
+import com.ivandev.proyectoveterinaria.fragment.cliente.historial.MiMascotaHistorialFragment
 import com.ivandev.proyectoveterinaria.fragment.cliente.mascota.MascotasFragment
 import com.ivandev.proyectoveterinaria.interfaces.IFragmentoToolbar
 import com.ivandev.proyectoveterinaria.model.MascotaIntro
@@ -53,6 +54,8 @@ class InicioClienteFragment : Fragment(R.layout.fragment_inicio_cliente), IFragm
 
 
         binding.tvVerTodasMascotas.setOnClickListener {
+            // 1. Avisamos al Activity que cambie el ícono seleccionado
+            (activity as? PanelPrincipalActivity)?.seleccionarItemMenu(R.id.nav_mascotas)
             parentFragmentManager.beginTransaction()
                 .setCustomAnimations(
                     R.anim.slide_in_right,  // Animación al entrar
@@ -63,6 +66,7 @@ class InicioClienteFragment : Fragment(R.layout.fragment_inicio_cliente), IFragm
                 .commit()
         }
         binding.Adopcion.setOnClickListener {
+            (activity as? PanelPrincipalActivity)?.seleccionarItemMenu(R.id.nav_adopcion)
             parentFragmentManager.beginTransaction()
                 .setCustomAnimations(
                     R.anim.slide_in_right,  // Animación al entrar
@@ -73,6 +77,7 @@ class InicioClienteFragment : Fragment(R.layout.fragment_inicio_cliente), IFragm
                 .commit()
         }
         binding.Vacunas.setOnClickListener {
+            (activity as? PanelPrincipalActivity)?.seleccionarItemMenu(R.id.nav_mascotas)
             parentFragmentManager.beginTransaction()
                 .setCustomAnimations(
                     R.anim.slide_in_right,
@@ -83,12 +88,13 @@ class InicioClienteFragment : Fragment(R.layout.fragment_inicio_cliente), IFragm
                 .commit()
         }
         binding.citas.setOnClickListener {
+            (activity as? PanelPrincipalActivity)?.seleccionarItemMenu(R.id.nav_historial)
             parentFragmentManager.beginTransaction()
                 .setCustomAnimations(
                     R.anim.slide_in_right,
                     R.anim.slide_out_left,
                 )
-                .replace(R.id.nav_host_fragment, MascotasFragment())
+                .replace(R.id.nav_host_fragment, MiMascotaHistorialFragment())
                 .addToBackStack(null)
                 .commit()
         }
